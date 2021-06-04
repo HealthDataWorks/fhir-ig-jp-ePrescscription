@@ -1,0 +1,900 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ImplementationGuide
+    xmlns="http://hl7.org/fhir">
+    <id value="jp-ePrescription"/>
+    <meta>
+        <versionId value="1"/>
+        <lastUpdated value="2021-06-04T06:28:40.361+00:00"/>
+        <source value="#kt7CUH0DaBTWVz8m"/>
+    </meta>
+    <url value="https://healthdataworks.net/hl7-fhir/ImplementationGuide/jp-ePrescription"/>
+    <version value="0.5.0"/>
+    <name value="JP_ePrescription"/>
+    <title value="電子処方箋"/>
+    <status value="draft"/>
+    <date value="2021-05-31"/>
+    <publisher value="HealthDataWorks"/>
+    <contact>
+        <name value="実装ガイド作成：小山内 尚、西山 喜樹、能崎 克行"/>
+        <telecom>
+            <system value="url"/>
+            <value value="https://healthdataworks.net/"/>
+        </telecom>
+    </contact>
+    <contact>
+        <name value="仕様策定メンバー（座長）：大江和彦（東京大学医学部附属病院）"/>
+    </contact>
+    <contact>
+        <name value="仕様策定メンバー：木村雅彦（日本アイ・ビー・エム(株)）、栗原邦彦（日本調剤(株)）、児玉義憲（(株)メドレー）、小西由貴範（(株)ケーアイエス）、小林慎治（国立保健医療科学院）、下坪信夫（(株)イーエムシステムズ）、下邨雅一（東京大学医学部附属病院）、高田敦史（九州大学病院）、土井俊祐（東京大学医学部附属病院）、永島里美（東京大学医学部附属病院）、吉村仁（保健医療福祉情報システム工業会（JAHIS））（50 音順）"/>
+    </contact>
+    <contact>
+        <name value="電子処方箋FHIR 仕様案策定事務局"/>
+        <telecom>
+            <system value="email"/>
+            <value value="epinfo@hl7fhir.jp"/>
+        </telecom>
+    </contact>
+    <description value="この実装ガイドは、HL7 FHIRのリソースに電子処方箋の情報を設定して利用するためのドキュメントです。"/>
+    <packageId value="jp-ePrescription"/>
+    <fhirVersion value="4.0.1"/>
+    <definition>
+        <resource>
+            <reference>
+                <reference value="StructureDefinition/jp-ePrescription-Bundle"/>
+                <display value="Bundleリソース　文書情報（処方箋・分割処方でないもの）"/>
+            </reference>
+            <name value="Bundleリソース　文書情報（処方箋・分割処方でないもの）"/>
+            <description value="電子処方箋Documentの基本構造を示す。&#xA;&#xA;document タイプのBundle リソースでは、管理的な情&#xA;報を格納する要素としてtimestamp、 signature などがあり、文書自体の内容&#xA;情報を格納する要素として、ひとつのentry 要素（エントリリスト）がある。&#xA;このentry 要素の値には、複数のresource 要素を含むブロックが繰り返され&#xA;る。"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="StructureDefinition/jp-ePrescription-Composition"/>
+                <display value="Compositionリソース　文書構成情報（処方箋・分割処方でないもの）"/>
+            </reference>
+            <name value="Compositionリソース　文書構成情報（処方箋・分割処方でないもの）"/>
+            <description value="Composition リソースは、電子処方箋FHIR document にentry として格納され&#xA;る複数のリソースのうちの最初に出現するもので、この文書全体の構成目次に&#xA;相当する情報や、セクションの構成を記述したものである。"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="StructureDefinition/jp-ePrescription-Patient"/>
+                <display value="Patientリソース　患者情報"/>
+            </reference>
+            <name value="Patientリソース　患者情報"/>
+            <description value="Patient リソースでは、患者の氏名（漢字等）、性別、生年月日、を必須情報として記述する。"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="StructureDefinition/jp-ePrescription-Encounter"/>
+                <display value="Encounterリソース　受信状況情報"/>
+            </reference>
+            <name value="Encounterリソース　受信状況情報"/>
+            <description value="処方箋が出された受診時状況（外来、入院、退院時など）情報を、Encounterリソースにより記録する。"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="StructureDefinition/jp-ePrescription-Coverage"/>
+                <display value="Coverageリソース　保険・自費情報"/>
+            </reference>
+            <name value="Coverageリソース　保険・自費情報"/>
+            <description value="自費など保険のない診療における処方であってもこのCoverage リソースは必須とし、適切な保険種別を指定する。"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="StructureDefinition/jp-ePrescription-Coverage2"/>
+                <display value="Coverageリソース　公費情報"/>
+            </reference>
+            <name value="Coverageリソース　公費情報"/>
+            <description value="公費医療をうける場合のみ必要。複数の公費の場合には、その数だけCoverage リソースを繰り返す。公費医療でない場合には記述は不要。"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="StructureDefinition/jp-ePrescription-Organization"/>
+                <display value="Organizationリソース　保険者情報"/>
+            </reference>
+            <name value="Organizationリソース　保険者情報"/>
+            <description value="保険種別が「6:自費」以外の場合、費用負担者情報を、Coverage リソースの&#xA;payor から参照されるOrganization リソースとして記録する。保険種別が「1:&#xA;医保」、「2:国保」、「7:後期高齢者」の場合は保険者を意味し、&#xA;Organization.identifier 要素に保険者番号を記録する。その他の保険種別の場合&#xA;は、identifier 要素は出現しない。費用負担者の名称を可能な範囲で&#xA;Organization.name 要素に記録する。"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="StructureDefinition/jp-ePrescription-Organization2"/>
+                <display value="Organizationリソース　処方医療機関情報"/>
+            </reference>
+            <name value="Organizationリソース　処方医療機関情報"/>
+            <description value="処方箋を発行した医療機関の情報をOrganization リソースに格納する。"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="StructureDefinition/jp-ePrescription-Organization3"/>
+                <display value="Organizationリソース　処方診療科情報"/>
+            </reference>
+            <name value="Organizationリソース　処方診療科情報"/>
+            <description value="処方診療科情報は、以下のOrganization リソースにより記述し、partOf 要素&#xA;から処方医療機関情報を表すOrganization リソースを参照する。処方診療科&#xA;情報を出力しない場合には不要である。"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="StructureDefinition/jp-ePrescription-PractitionerRole"/>
+                <display value="PractitionerRoleリソース　処方医役割情報"/>
+            </reference>
+            <name value="PractitionerRoleリソース　処方医役割情報"/>
+            <description value="処方医を識別するID や番号として、医籍登録番号、もしくは処方医療機関に&#xA;おける処方医ID（たとえば端末利用者アカウント、あるいは職員番号など）を&#xA;PractitionerRole リソースのidentifier 要素に記録する。"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="StructureDefinition/jp-ePrescription-Practitioner"/>
+                <display value="Practitionerリソース　処方医情報"/>
+            </reference>
+            <name value="Practitionerリソース　処方医情報"/>
+            <description value="処方医はPractitioner リソースとして記述し、PractitionerRole リソース（処&#xA;方医役割情報）から参照する。麻薬処方の場合のみ、qualification 要素に&#xA;、麻薬施用者免許番号を記録する。"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="StructureDefinition/jp-ePrescription-MedicationRequest"/>
+                <display value="MedicationRequestリソース　処方依頼情報"/>
+            </reference>
+            <name value="MedicationRequestリソース　処方依頼情報"/>
+            <description value="１医薬品ごとに処方指示がひとつのMedicationRequest リソースにより記述&#xA;され、医薬品の数だけMedicationRequest リソースが繰り返される。"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="StructureDefinition/jp-ePrescription-InstructionForDispense"/>
+                <display value="調剤指示"/>
+            </reference>
+            <name value="調剤指示"/>
+            <description value="MedicatonRequest リソースの&#xA;拡張「InstructionForDispense」を表すextension 要素は、&#xA;Extension 型の要素であり、調剤者への指示を表す。&#xA;&#xA;薬剤単位の調剤指⽰を表現するための拡張"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="StructureDefinition/jp-ePrescription-Bundle2"/>
+                <display value="Bundleリソース　文書情報（処方箋・分割処方）"/>
+            </reference>
+            <name value="Bundleリソース　文書情報（処方箋・分割処方）"/>
+            <description value="分割処方箋を表すBundle リソースの構造を示す。"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="StructureDefinition/jp-ePrescription-Composition2"/>
+                <display value="Compositionリソース　文書構成情報（分割処方箋）"/>
+            </reference>
+            <name value="Compositionリソース　文書構成情報（分割処方箋）"/>
+            <description value="分割処方箋に対応するBundle リソースの最初のentry となる&#xA;Composition リソースの構造を示す。"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="StructureDefinition/jp-ePrescription-Organization4"/>
+                <display value="Organizationリソース（分割処方箋における処方医療機関情報）"/>
+            </reference>
+            <name value="Organizationリソース（分割処方箋における処方医療機関情報）"/>
+            <description value="分割処方箋発行医療機関情報は、Organization リソースとして記録する。"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="ValueSet/jp-ePrescription-ValueSet1"/>
+                <display value="文書区分コード"/>
+            </reference>
+            <name value="文書区分コード"/>
+            <description value="FHIR ⽂書の⽂書区分（処⽅箋⽂書）"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="ValueSet/jp-ePrescription-ValueSet2"/>
+                <display value="処方箋区分コード"/>
+            </reference>
+            <name value="処方箋区分コード"/>
+            <description value="処⽅箋の区分（⼀般処⽅／⿇薬処⽅）"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="ValueSet/jp-ePrescription-ValueSet3"/>
+                <display value="セクション区分コード"/>
+            </reference>
+            <name value="セクション区分コード"/>
+            <description value="セクション区分コード"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="ValueSet/jp-ePrescription-ValueSet4"/>
+                <display value="医療従事者資格"/>
+            </reference>
+            <name value="医療従事者資格"/>
+            <description value="⿇薬施⽤者免許番号を指定する場合に使⽤する医療従事者の資格"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="ValueSet/jp-ePrescription-ValueSet5"/>
+                <display value="医薬品コード（医薬品マスター）"/>
+            </reference>
+            <name value="医薬品コード（医薬品マスター）"/>
+            <description value="医薬品コード（レセ電算医薬品コード）"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="ValueSet/jp-ePrescription-ValueSet6"/>
+                <display value="薬価基準収載医薬品コード"/>
+            </reference>
+            <name value="薬価基準収載医薬品コード"/>
+            <description value="医薬品コード（薬価基準収載医薬品コード）"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="ValueSet/jp-ePrescription-ValueSet7"/>
+                <display value="YJコード"/>
+            </reference>
+            <name value="YJコード"/>
+            <description value="医薬品コード（YJコード）"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="ValueSet/jp-ePrescription-ValueSet8"/>
+                <display value="HOT コード（9桁）"/>
+            </reference>
+            <name value="HOT コード（9桁）"/>
+            <description value="医薬品コード（HOT9）"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="ValueSet/jp-ePrescription-ValueSet9"/>
+                <display value="GS1コード"/>
+            </reference>
+            <name value="GS1コード"/>
+            <description value="医薬品GS1コード"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="ValueSet/jp-ePrescription-ValueSet10"/>
+                <display value="一般処方名マスター"/>
+            </reference>
+            <name value="一般処方名マスター"/>
+            <description value="⼀般処⽅名マスタ"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="ValueSet/jp-ePrescription-ValueSet11"/>
+                <display value="JAMI 標準⽤法コード"/>
+            </reference>
+            <name value="JAMI 標準⽤法コード"/>
+            <description value="⽤法コード（１６桁）"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="ValueSet/jp-ePrescription-ValueSet12"/>
+                <display value="JAMI 補⾜⽤法コード"/>
+            </reference>
+            <name value="JAMI 補⾜⽤法コード"/>
+            <description value="補⾜⽤法コード(８桁)"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="ValueSet/jp-ePrescription-ValueSet13"/>
+                <display value="JAMI 部位コード"/>
+            </reference>
+            <name value="JAMI 部位コード"/>
+            <description value="部位コード（３桁）"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="ValueSet/jp-ePrescription-ValueSet14"/>
+                <display value="投与⽅法"/>
+            </reference>
+            <name value="投与⽅法"/>
+            <description value="投与⽅法（１桁）"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="ValueSet/jp-ePrescription-ValueSet15"/>
+                <display value="投与経路"/>
+            </reference>
+            <name value="投与経路"/>
+            <description value="投与経路（２桁）"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="ValueSet/jp-ePrescription-ValueSet16"/>
+                <display value="⼒価区分"/>
+            </reference>
+            <name value="⼒価区分"/>
+            <description value="⼒価区分"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="ValueSet/jp-ePrescription-ValueSet17"/>
+                <display value="処⽅箋備考区分"/>
+            </reference>
+            <name value="処⽅箋備考区分"/>
+            <description value="処⽅箋備考区分"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="ValueSet/jp-ePrescription-ValueSet18"/>
+                <display value="後発品変更不可コード"/>
+            </reference>
+            <name value="後発品変更不可コード"/>
+            <description value="後発医薬品変更不可区分"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="ValueSet/jp-ePrescription-ValueSet19"/>
+                <display value="残薬確認指⽰コード"/>
+            </reference>
+            <name value="残薬確認指⽰コード"/>
+            <description value="残薬確認指⽰コード"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="ValueSet/jp-ePrescription-ValueSet20"/>
+                <display value="調剤指⽰コード"/>
+            </reference>
+            <name value="調剤指⽰コード"/>
+            <description value="調剤指⽰コード"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="ValueSet/jp-ePrescription-ValueSet21"/>
+                <display value="診療科コード"/>
+            </reference>
+            <name value="診療科コード"/>
+            <description value="診療科コード"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="ValueSet/jp-ePrescription-ValueSet22"/>
+                <display value="保険種別コード"/>
+            </reference>
+            <name value="保険種別コード"/>
+            <description value="保険種別コード"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="ValueSet/jp-ePrescription-ValueSet23"/>
+                <display value="被保険者区分コード"/>
+            </reference>
+            <name value="被保険者区分コード"/>
+            <description value="被保険者区分コード"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="ValueSet/jp-ePrescription-ValueSet24"/>
+                <display value="医薬品単位略号"/>
+            </reference>
+            <name value="医薬品単位略号"/>
+            <description value="医薬品単位略号"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="CodeSystem/jp-ePrescription-CodeSystem1"/>
+                <display value="文書区分コード"/>
+            </reference>
+            <name value="文書区分コード"/>
+            <description value="urn:oid:1.2.392.100495.20.2.11"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="CodeSystem/jp-ePrescription-CodeSystem2"/>
+                <display value="処⽅箋区分コード"/>
+            </reference>
+            <name value="処⽅箋区分コード"/>
+            <description value="http://jpfhir.jp/fhir/ePrescription/CodeSystem/PrescriptionCategory"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="CodeSystem/jp-ePrescription-CodeSystem3"/>
+                <display value="セクション区分コード"/>
+            </reference>
+            <name value="セクション区分コード"/>
+            <description value="urn:oid:1.2.392.100495.20.2.12"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="CodeSystem/jp-ePrescription-CodeSystem4"/>
+                <display value="医療従事者資格"/>
+            </reference>
+            <name value="医療従事者資格"/>
+            <description value="http://jpfhir.jp/fhir/ePrescription/CodeSystem/Certificate"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="CodeSystem/jp-ePrescription-CodeSystem5"/>
+                <display value="医薬品コード（医薬品マスター）"/>
+            </reference>
+            <name value="医薬品コード（医薬品マスター）"/>
+            <description value="urn:oid:1.2.392.100495.20.1.71"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="CodeSystem/jp-ePrescription-CodeSystem6"/>
+                <display value="薬価基準収載医薬品コード"/>
+            </reference>
+            <name value="薬価基準収載医薬品コード"/>
+            <description value="urn:oid:1.2.392.100495.20.1.72"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="CodeSystem/jp-ePrescription-CodeSystem7"/>
+                <display value="YJコード"/>
+            </reference>
+            <name value="YJコード"/>
+            <description value="urn:oid:1.2.392.100495.20.1.73"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="CodeSystem/jp-ePrescription-CodeSystem8"/>
+                <display value="HOT コード（9 桁）"/>
+            </reference>
+            <name value="HOT コード（9 桁）"/>
+            <description value="urn:oid:1.2.392.100495.20.1.74"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="CodeSystem/jp-ePrescription-CodeSystem9"/>
+                <display value="⼀般処⽅名マスター"/>
+            </reference>
+            <name value="⼀般処⽅名マスター"/>
+            <description value="urn:oid:1.2.392.100495.20.1.81"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="CodeSystem/jp-ePrescription-CodeSystem10"/>
+                <display value="JAMI 標準⽤法コード"/>
+            </reference>
+            <name value="JAMI 標準⽤法コード"/>
+            <description value="urn:oid:1.2.392.100495.20.2.31"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="CodeSystem/jp-ePrescription-CodeSystem11"/>
+                <display value="JAMI 補⾜⽤法コード"/>
+            </reference>
+            <name value="JAMI 補⾜⽤法コード"/>
+            <description value="urn:oid:1.2.392.100495.20.2.32"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="CodeSystem/jp-ePrescription-CodeSystem12"/>
+                <display value="JAMI 部位コード"/>
+            </reference>
+            <name value="JAMI 部位コード"/>
+            <description value="urn:oid:1.2.392.100495.20.2.33"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="CodeSystem/jp-ePrescription-CodeSystem13"/>
+                <display value="投与⽅法"/>
+            </reference>
+            <name value="投与⽅法"/>
+            <description value="urn:oid:1.2.392.100495.20.2.34（仮）"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="CodeSystem/jp-ePrescription-CodeSystem14"/>
+                <display value="投与経路"/>
+            </reference>
+            <name value="投与経路"/>
+            <description value="urn:oid:1.2.392.100495.20.2.35（仮）"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="CodeSystem/jp-ePrescription-CodeSystem15"/>
+                <display value="⼒価区分"/>
+            </reference>
+            <name value="⼒価区分"/>
+            <description value="urn:oid:1.2.392.100495.20.2.22"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="CodeSystem/jp-ePrescription-CodeSystem16"/>
+                <display value="処⽅箋備考区分"/>
+            </reference>
+            <name value="処⽅箋備考区分"/>
+            <description value="http://jpfhir.jp/fhir/ePrescription/CodeSystem/CommunicationCategory"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="CodeSystem/jp-ePrescription-CodeSystem17"/>
+                <display value="後発品変更不可コード"/>
+            </reference>
+            <name value="後発品変更不可コード"/>
+            <description value="urn:oid:1.2.392.100495.20.2.41"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="CodeSystem/jp-ePrescription-CodeSystem18"/>
+                <display value="残薬確認指⽰コード"/>
+            </reference>
+            <name value="残薬確認指⽰コード"/>
+            <description value="urn:oid:1.2.392.100495.20.2.42"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="CodeSystem/jp-ePrescription-CodeSystem19"/>
+                <display value="調剤指⽰コード"/>
+            </reference>
+            <name value="調剤指⽰コード"/>
+            <description value="urn:oid:1.2.392.100495.20.2.43（仮）"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="CodeSystem/jp-ePrescription-CodeSystem20"/>
+                <display value="診療科コード"/>
+            </reference>
+            <name value="診療科コード"/>
+            <description value="urn:oid:1.2.392.100495.20.2.51"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="CodeSystem/jp-ePrescription-CodeSystem21"/>
+                <display value="保険種別コード"/>
+            </reference>
+            <name value="保険種別コード"/>
+            <description value="urn:oid:1.2.392.100495.20.2.61"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="CodeSystem/jp-ePrescription-CodeSystem22"/>
+                <display value="被保険者区分コード"/>
+            </reference>
+            <name value="被保険者区分コード"/>
+            <description value="urn:oid:1.2.392.100495.20.2.62"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="CodeSystem/jp-ePrescription-CodeSystem23"/>
+                <display value="医薬品単位略号"/>
+            </reference>
+            <name value="医薬品単位略号"/>
+            <description value="urn:oid:1.2.392.100495.20.2.101"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="StructureDefinition/jp-ePrescription-PrefectureNo"/>
+                <display value="都道府県番号"/>
+            </reference>
+            <name value="都道府県番号"/>
+            <description value="保険医療機関番号に含まれる都道府県番号2桁を表す拡張"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="StructureDefinition/jp-ePrescription-ScoreCode"/>
+                <display value="点数表コード"/>
+            </reference>
+            <name value="点数表コード"/>
+            <description value="保険医療機関番号に含まれる点数表コード1桁を表す拡張"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="StructureDefinition/jp-ePrescription-OrganizationNo"/>
+                <display value="保険医療機関番号（7 桁）"/>
+            </reference>
+            <name value="保険医療機関番号（7桁）"/>
+            <description value="保険医療機関番号7桁を表す拡張"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="StructureDefinition/jp-ePrescription-Signature"/>
+                <display value="後発品変更不可時の電子署名"/>
+            </reference>
+            <name value="後発品変更不可時の電⼦署名"/>
+            <description value="後発品変更不可時の処⽅医の電⼦署名データを格納する拡張"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="StructureDefinition/jp-ePrescription-MedicationStartDate"/>
+                <display value="投与開始日"/>
+            </reference>
+            <name value="投与開始⽇"/>
+            <description value="投与開始⽇を格納する拡張"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="StructureDefinition/jp-ePrescription-MedicationDays"/>
+                <display value="実投与日数"/>
+            </reference>
+            <name value="実投与日数"/>
+            <description value="実投与⽇数を格納する拡張"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="StructureDefinition/jp-ePrescription-CommunicationContent"/>
+                <display value="コミュニケーション内容"/>
+            </reference>
+            <name value="コミュニケーション内容"/>
+            <description value="コミュニケーションの内容をコードまたはテキストで表現するための拡張"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="StructureDefinition/jp-ePrescription-RepeatCount"/>
+                <display value="頓⽤回数"/>
+            </reference>
+            <name value="頓⽤回数"/>
+            <description value="頓⽤の場合など調剤量を錠数ではなく回数で表現したい場合の回数を格納する拡張。"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="StructureDefinition/jp-ePrescription-InsuredSymbol"/>
+                <display value="被保険者証記号"/>
+            </reference>
+            <name value="被保険者証記号"/>
+            <description value="被保険者証記号を格納する拡張"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="StructureDefinition/jp-ePrescription-InsuredNumber"/>
+                <display value="被保険者証番号"/>
+            </reference>
+            <name value="被保険者証番号"/>
+            <description value="被保険者証番号を格納する拡張"/>
+            <exampleBoolean value="false"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="Patient/jp-ePrescription-PatientSS"/></reference>
+            <name value="Patientリソースの記述例"/>
+            <exampleBoolean value="true"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="Encounter/jp-ePrescription-EncounterSS"/></reference>
+            <name value="Encounterリソース記述例"/>
+            <exampleBoolean value="true"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="Coverage/jp-ePrescription-CoverageSS"/></reference>
+            <name value="Coverage リソース（保険・⾃費情報）の記述例"/>
+            <exampleBoolean value="true"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="Coverage/jp-ePrescription-Coverage2SS"/></reference>
+            <name value="Coverage リソース（公費情報）の記述例"/>
+            <exampleBoolean value="true"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="Organization/jp-ePrescription-OrganizationSS"/>
+                <display value="サンプル健康保険組合"/>
+            </reference>
+            <name value="Organization リソース（費⽤負担者（保険者等）情報）の記述例"/>
+            <exampleBoolean value="true"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="Organization/jp-ePrescription-Organization2SS"/>
+                <display value="厚生労働省第一病院"/>
+            </reference>
+            <name value="Organization リソース（処⽅医療機関情報）の記述例"/>
+            <exampleBoolean value="false"/>
+            <exampleCanonical value="https://healthdataworks.net/JP-ePrescription/StructureDefinition/Organization2"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="Organization/jp-ePrescription-Organization3SS"/>
+                <display value="内科"/>
+            </reference>
+            <name value="Organization リソース（処⽅診療科情報）の記述例"/>
+            <exampleBoolean value="true"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="Practitioner/jp-ePrescription-PractitionerSS"/></reference>
+            <name value="Practitioner リソース（処⽅医情報）の記述例"/>
+            <exampleBoolean value="true"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="PractitionerRole/jp-ePrescription-PractitionerRoleSS"/></reference>
+            <name value="PractitionerRole リソース（処⽅医役割情報）"/>
+            <exampleBoolean value="true"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="MedicationRequest/jp-ePrescription-MedicationRequestSS"/></reference>
+            <name value="内服薬の記述例"/>
+            <exampleBoolean value="true"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="MedicationRequest/jp-ePrescription-MedicationRequestSS2"/></reference>
+            <name value="外⽤薬の記述例1"/>
+            <exampleBoolean value="true"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="MedicationRequest/jp-ePrescription-MedicationRequestSS3"/></reference>
+            <name value="外⽤薬の記述例2"/>
+            <exampleBoolean value="true"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="MedicationRequest/jp-ePrescription-MedicationRequestSS4"/></reference>
+            <name value="外⽤薬の記述例3"/>
+            <exampleBoolean value="true"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="MedicationRequest/jp-ePrescription-MedicationRequestSS8-1"/></reference>
+            <name value="不均等投与インスタンス例（１回ごと記述）剤グループ1"/>
+            <exampleBoolean value="true"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="MedicationRequest/jp-ePrescription-MedicationRequestSS8-2"/></reference>
+            <name value="不均等投与インスタンス例（１回ごと記述）剤グループ2"/>
+            <exampleBoolean value="true"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="MedicationRequest/jp-ePrescription-MedicationRequestSS8-3"/></reference>
+            <name value="不均等投与インスタンス例（１回ごと記述）剤グループ3"/>
+            <exampleBoolean value="true"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="MedicationRequest/jp-ePrescription-MedicationRequestSS5"/></reference>
+            <name value="不均等投与インスタンス例（１⽇⽤法で記述）"/>
+            <exampleBoolean value="true"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="MedicationRequest/jp-ePrescription-MedicationRequestSS6"/></reference>
+            <name value="隔⽇投与のインスタンス例"/>
+            <exampleBoolean value="true"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="MedicationRequest/jp-ePrescription-MedicationRequestSS7"/></reference>
+            <name value="曜⽇指定のインスタンス例"/>
+            <exampleBoolean value="true"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="Bundle/jp-ePrescription-BundleSS"/>
+                <display value="jp-electronic-prescription-BundleSS"/>
+            </reference>
+            <name value="分割処方箋記述例"/>
+            <exampleBoolean value="false"/>
+            <exampleCanonical value="https://healthdataworks.net/JP-ePrescription/StructureDefinition/Bundle2"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="MedicationRequest/jp-ePrescription-MedicationRequestSS9-1"/></reference>
+            <name value="漸増処⽅の記述例(1)"/>
+            <exampleBoolean value="true"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="MedicationRequest/jp-ePrescription-MedicationRequestSS9-2"/></reference>
+            <name value="漸増処⽅の記述例(2)"/>
+            <exampleBoolean value="true"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="MedicationRequest/jp-ePrescription-MedicationRequestSS9-3"/></reference>
+            <name value="漸増処⽅の記述例(3)"/>
+            <exampleBoolean value="true"/>
+        </resource>
+        <page>
+            <nameUrl value="index.html"/>
+            <title value="Home Page"/>
+            <generation value="markdown"/>
+            <page>
+                <nameUrl value="summary.html"/>
+                <title value="概要"/>
+                <generation value="markdown"/>
+            </page>
+            <page>
+                <nameUrl value="usecase.html"/>
+                <title value="ユースケース"/>
+                <generation value="markdown"/>
+            </page>
+            <page>
+                <nameUrl value="guidance.html"/>
+                <title value="ガイダンス"/>
+                <generation value="markdown"/>
+                <page>
+                    <nameUrl value="structure.html"/>
+                    <title value="電子処方箋FHIR記述の全体構造"/>
+                    <generation value="markdown"/>
+                </page>
+                <page>
+                    <nameUrl value="descriptionmethod.html"/>
+                    <title value="処方箋の運用に関係する情報の記述方法"/>
+                    <generation value="markdown"/>
+                </page>
+                <page>
+                    <nameUrl value="prescription.html"/>
+                    <title value="医師の分割指示に係る処方箋"/>
+                    <generation value="markdown"/>
+                </page>
+                <page>
+                    <nameUrl value="datatype.html"/>
+                    <title value="データタイプについて"/>
+                    <generation value="markdown"/>
+                </page>
+                <page>
+                    <nameUrl value="namespace.html"/>
+                    <title value="名前空間と識別ID"/>
+                    <generation value="markdown"/>
+                </page>
+            </page>
+        </page>
+        <parameter>
+            <code value="copyrightyear"/>
+            <value value="2020+"/>
+        </parameter>
+        <parameter>
+            <code value="releaselabel"/>
+            <value value="CI Build"/>
+        </parameter>
+    </definition>
+</ImplementationGuide>

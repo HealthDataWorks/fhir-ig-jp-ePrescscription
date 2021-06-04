@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Organization
+    xmlns="http://hl7.org/fhir">
+    <id value="jp-ePrescription-OrganizationSS"/>
+    <meta>
+        <versionId value="1"/>
+        <lastUpdated value="2021-06-04T05:42:54.365+00:00"/>
+        <source value="#YPfrxa8gBiuKtI81"/>
+    </meta>
+    <text>
+        <status value="generated"/>
+        <div
+            xmlns="http://www.w3.org/1999/xhtml">
+            <li>06123456</li>
+            <li>サンプル健康保険組合</li>
+        </div>
+    </text>
+    <identifier>
+        <system value="urn:oid:1.2.392.100495.20.3.61"/>
+        <value value="06123456"/>
+    </identifier>
+    <type>
+        <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/organizationtype"/>
+            <code value="ins"/>
+        </coding>
+    </type>
+    <name value="サンプル健康保険組合"/>
+</Organization>

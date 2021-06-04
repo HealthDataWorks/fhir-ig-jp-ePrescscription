@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeSystem
+    xmlns="http://hl7.org/fhir">
+    <id value="jp-ePrescription-CodeSystem15"/>
+    <meta>
+        <versionId value="1"/>
+        <lastUpdated value="2021-06-04T05:13:18.741+00:00"/>
+        <source value="#zaYeeISUdiz6gPSZ"/>
+    </meta>
+    <url value="https://healthdataworks.net/JP-electronic-prescription/CodeSystem-CodeSystem15.html"/>
+    <identifier>
+        <use value="official"/>
+        <system value="urn:oid:1.2.392.100495.20.2.22"/>
+    </identifier>
+    <name value="CodeSystem15"/>
+    <title value="⼒価区分"/>
+    <status value="draft"/>
+    <description value="urn:oid:1.2.392.100495.20.2.22"/>
+    <content value="not-present"/>
+</CodeSystem>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValueSet
+    xmlns="http://hl7.org/fhir">
+    <id value="jp-ePrescription-ValueSet15"/>
+    <meta>
+        <versionId value="1"/>
+        <lastUpdated value="2021-06-04T05:20:41.050+00:00"/>
+        <source value="#EwUhNhovaBVW4ud0"/>
+    </meta>
+    <url value="https://healthdataworks.net/JP-ePrescription/ValueSet-MedicationRoute.html"/>
+    <name value="MedicationRoute"/>
+    <title value="投与経路"/>
+    <status value="draft"/>
+    <description value="投与経路（２桁）"/>
+    <compose>
+        <include>
+            <system value="urn:oid:1.2.392.200250.2.2.20.40"/>
+        </include>
+    </compose>
+</ValueSet>

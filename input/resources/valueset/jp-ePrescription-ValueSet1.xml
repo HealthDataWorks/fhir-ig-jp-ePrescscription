@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValueSet
+    xmlns="http://hl7.org/fhir">
+    <id value="jp-ePrescription-ValueSet1"/>
+    <meta>
+        <versionId value="1"/>
+        <lastUpdated value="2021-06-04T04:48:04.469+00:00"/>
+        <source value="#O7R1TGYsHoFYjJwa"/>
+    </meta>
+    <url value="https://healthdataworks.net/JP-ePrescription/ValueSet-DocumentType.html"/>
+    <name value="DocumentType"/>
+    <title value="文書区分コード"/>
+    <status value="draft"/>
+    <description value="FHIR ⽂書の⽂書区分（処⽅箋⽂書）"/>
+    <compose>
+        <include>
+            <system value="http://jpfhir.jp/fhir/ePrescription/CodeSystem/DocumentType"/>
+        </include>
+    </compose>
+</ValueSet>

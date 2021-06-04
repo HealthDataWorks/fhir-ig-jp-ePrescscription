@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValueSet
+    xmlns="http://hl7.org/fhir">
+    <id value="jp-ePrescription-ValueSet17"/>
+    <meta>
+        <versionId value="1"/>
+        <lastUpdated value="2021-06-04T05:00:35.811+00:00"/>
+        <source value="#bdLGU2KaG323hKdB"/>
+    </meta>
+    <url value="https://healthdataworks.net/JP-ePrescription/ValueSet-PrescriptionRemark.html"/>
+    <name value="PrescriptionRemark"/>
+    <title value="処⽅箋備考区分"/>
+    <status value="draft"/>
+    <description value="処⽅箋備考区分"/>
+    <compose>
+        <include>
+            <system value="http://jpfhir.jp/fhir/ePrescription/CodeSystem/CommunicationCategory"/>
+        </include>
+    </compose>
+</ValueSet>

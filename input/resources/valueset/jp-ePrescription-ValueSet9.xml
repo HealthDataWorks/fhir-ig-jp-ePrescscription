@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValueSet
+    xmlns="http://hl7.org/fhir">
+    <id value="jp-ePrescription-ValueSet9"/>
+    <meta>
+        <versionId value="1"/>
+        <lastUpdated value="2021-06-04T04:59:24.516+00:00"/>
+        <source value="#l6MfJ4MvW1JnbATy"/>
+    </meta>
+    <url value="https://healthdataworks.net/JP-ePrescription/ValueSet-GS1Code.html"/>
+    <name value="GS1Code"/>
+    <title value="GS1コード"/>
+    <status value="draft"/>
+    <description value="医薬品GS1コード"/>
+    <compose>
+        <include>
+            <system value="調査中"/>
+        </include>
+    </compose>
+</ValueSet>

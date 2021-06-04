@@ -1,0 +1,9 @@
+custom-template/
+input-cache/
+output/
+temp/
+template/
+
+publisher.jar
+
+.vscode

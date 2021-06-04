@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValueSet
+    xmlns="http://hl7.org/fhir">
+    <id value="jp-ePrescription-ValueSet20"/>
+    <meta>
+        <versionId value="1"/>
+        <lastUpdated value="2021-06-04T04:58:28.414+00:00"/>
+        <source value="#fBtht2Huj8VjtnoE"/>
+    </meta>
+    <url value="https://healthdataworks.net/JP-ePrescription/ValueSet-DispenseInstruction.html"/>
+    <name value="DispenseInstruction"/>
+    <title value="調剤指⽰コード"/>
+    <status value="draft"/>
+    <description value="調剤指⽰コード"/>
+    <compose>
+        <include>
+            <system value="urn:oid:1.2.392.200250.2.2.30.10"/>
+        </include>
+    </compose>
+</ValueSet>

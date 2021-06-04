@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Coverage
+    xmlns="http://hl7.org/fhir">
+    <id value="jp-ePrescription-CoverageSS"/>
+    <meta>
+        <versionId value="1"/>
+        <lastUpdated value="2021-06-04T05:41:15.282+00:00"/>
+        <source value="#WK5bcZq6Tjsj5ohK"/>
+    </meta>
+    <text>
+        <status value="generated"/>
+        <div
+            xmlns="http://www.w3.org/1999/xhtml">
+            <ul>
+                <li>保険者番号：06123456</li>
+                <li>被保険者証記号・番号：１２３４５・６７８９０</li>
+                <li>枝番：01</li>
+                <li>患者区分：本人</li>
+                <li>資格取得日：2018年4月1日</li>
+            </ul>
+        </div>
+    </text>
+    <extension url="http://jpfhir.jp/fhir/ePrescription/StructureDefinition/InsuredPersonSymbol">
+        <valueString value="１２３４５"/>
+    </extension>
+    <extension url="http://jpfhir.jp/fhir/ePrescription/StructureDefinition/InsuredPersonNumber">
+        <valueString value="６７８９０"/>
+    </extension>
+    <status value="active"/>
+    <type>
+        <coding>
+            <system value="urn:oid:1.2.392.100495.20.2.61"/>
+            <code value="1"/>
+        </coding>
+    </type>
+    <beneficiary>
+        <reference value="Patient/jp-ePrescription-PatientSS"/>
+    </beneficiary>
+    <dependent value="01"/>
+    <relationship>
+        <coding>
+            <system value="urn:oid:1.2.392.100495.20.2.62"/>
+            <code value="1"/>
+            <display value="被保険者"/>
+        </coding>
+    </relationship>
+    <period>
+        <start value="2018-04-01"/>
+    </period>
+    <payor>
+        <reference value="Organization/jp-ePrescription-OrganizationSS"/>
+    </payor>
+    <costToBeneficiary>
+        <type>
+            <coding>
+                <system value="http://terminology.hl7.org/CodeSystem/coveragecopay-type"/>
+                <code value="copaypct"/>
+                <display value="負担率"/>
+            </coding>
+        </type>
+        <valueQuantity>
+            <value value="30"/>
+            <unit value="%"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="%"/>
+        </valueQuantity>
+    </costToBeneficiary>
+</Coverage>

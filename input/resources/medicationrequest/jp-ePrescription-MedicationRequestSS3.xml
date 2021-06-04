@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationRequest
+    xmlns="http://hl7.org/fhir">
+    <id value="jp-ePrescription-MedicationRequestSS3"/>
+    <meta>
+        <versionId value="1"/>
+        <lastUpdated value="2021-06-04T05:42:08.269+00:00"/>
+        <source value="#efzZLIkXrGG8C2Bp"/>
+    </meta>
+    <text>
+        <status value="generated"/>
+        <div
+            xmlns="http://www.w3.org/1999/xhtml">
+            <ul>
+                <li>RP:2</li>
+                <li>リンデロンＶＧクリーム ５ｇ</li>
+                <li>外用・１日３回・患部に塗布（膝とすね）</li>
+                <li>２本（全量）</li>
+            </ul>
+        </div>
+    </text>
+    <identifier>
+        <system value="urn:oid:1.2.392.100495.20.3.81"/>
+        <value value="2"/>
+    </identifier>
+    <identifier>
+        <system value="urn:oid:1.2.392.100495.20.3.82"/>
+        <value value="1"/>
+    </identifier>
+    <status value="active"/>
+    <intent value="order"/>
+    <medicationCodeableConcept>
+        <coding>
+            <system value="urn:oid:1.2.392.200119.4.403.1"/>
+            <code value="106062101"/>
+            <display value="リンデロンＶＧクリーム ５ｇ"/>
+        </coding>
+    </medicationCodeableConcept>
+    <subject>
+        <reference value="Patient/jp-ePrescription-PatientSS"/>
+    </subject>
+    <authoredOn value="2020-08-21T12:28:17+09:00"/>
+    <dosageInstruction>
+        <text value="１日３回患部に塗布（膝）"/>
+        <timing>
+            <code>
+                <coding>
+                    <system value="urn:oid:1.2.392.200250.2.2.20.20"/>
+                    <code value="2B73000000000000"/>
+                    <display value="外用・塗布・１日３回"/>
+                </coding>
+            </code>
+        </timing>
+        <site>
+            <coding>
+                <system value="urn:oid:1.2.392.200250.2.2.20.32"/>
+                <code value="950"/>
+                <display value="膝"/>
+            </coding>
+        </site>
+        <route>
+            <coding>
+                <system value="urn:oid:1.2.392.200250.2.2.20.40"/>
+                <code value="2B"/>
+                <display value="塗布"/>
+            </coding>
+        </route>
+        <method>
+            <coding>
+                <system value="urn:oid:1.2.392.200250.2.2.20.30"/>
+                <code value="2"/>
+                <display value="外用"/>
+            </coding>
+        </method>
+    </dosageInstruction>
+    <dosageInstruction>
+        <text value="１日３回患部に塗布（すね）"/>
+        <timing>
+            <code>
+                <coding>
+                    <system value="urn:oid:1.2.392.200250.2.2.20.20"/>
+                    <code value="2B73000000000000"/>
+                    <display value="外用・塗布・１日３回"/>
+                </coding>
+            </code>
+        </timing>
+        <site>
+            <coding>
+                <system value="urn:oid:1.2.392.200250.2.2.20.32"/>
+                <code value="970"/>
+                <display value="すね"/>
+            </coding>
+        </site>
+        <route>
+            <coding>
+                <system value="urn:oid:1.2.392.200250.2.2.20.40"/>
+                <code value="2B"/>
+                <display value="塗布"/>
+            </coding>
+        </route>
+        <method>
+            <coding>
+                <system value="urn:oid:1.2.392.200250.2.2.20.30"/>
+                <code value="2"/>
+                <display value="外用"/>
+            </coding>
+        </method>
+    </dosageInstruction>
+    <dispenseRequest>
+        <quantity>
+            <value value="2"/>
+            <unit value="本"/>
+            <system value="urn:oid:1.2.392.100495.20.2.101"/>
+            <code value="HON"/>
+        </quantity>
+    </dispenseRequest>
+    <substitution>
+        <allowedCodeableConcept>
+            <coding>
+                <system value="urn:oid:1.2.392.100495.20.2.41"/>
+                <code value="0"/>
+                <display value="変更可"/>
+            </coding>
+        </allowedCodeableConcept>
+    </substitution>
+</MedicationRequest>

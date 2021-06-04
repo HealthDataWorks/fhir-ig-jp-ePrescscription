@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValueSet
+    xmlns="http://hl7.org/fhir">
+    <id value="jp-ePrescription-ValueSet12"/>
+    <meta>
+        <versionId value="1"/>
+        <lastUpdated value="2021-06-04T04:59:59.577+00:00"/>
+        <source value="#SHiLqTzKA6cGIHcf"/>
+    </meta>
+    <url value="https://healthdataworks.net/JP-ePrescription/ValueSet-JAMIAdditionalCode.html"/>
+    <name value="JAMIAdditionalCode"/>
+    <title value="JAMI 補⾜⽤法コード"/>
+    <status value="draft"/>
+    <description value="補⾜⽤法コード(８桁)"/>
+    <compose>
+        <include>
+            <system value="urn:oid:1.2.392.200250.2.2.20.22"/>
+        </include>
+    </compose>
+</ValueSet>

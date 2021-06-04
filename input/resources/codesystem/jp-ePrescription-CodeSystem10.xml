@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeSystem
+    xmlns="http://hl7.org/fhir">
+    <id value="jp-ePrescription-CodeSystem10"/>
+    <meta>
+        <versionId value="1"/>
+        <lastUpdated value="2021-06-04T05:12:34.357+00:00"/>
+        <source value="#0sJ9toKwx4dKhBmW"/>
+    </meta>
+    <url value="https://healthdataworks.net/JP-electronic-prescription/CodeSystem-CodeSystem10.html"/>
+    <identifier>
+        <use value="official"/>
+        <system value="urn:oid:1.2.392.200250.2.2.20.20"/>
+    </identifier>
+    <name value="CodeSystem10"/>
+    <title value="JAMI 標準⽤法コード"/>
+    <status value="draft"/>
+    <description value="urn:oid:1.2.392.100495.20.2.31"/>
+    <content value="not-present"/>
+</CodeSystem>

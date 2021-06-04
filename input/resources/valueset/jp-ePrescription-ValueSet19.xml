@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValueSet
+    xmlns="http://hl7.org/fhir">
+    <id value="jp-ePrescription-ValueSet19"/>
+    <meta>
+        <versionId value="1"/>
+        <lastUpdated value="2021-06-04T04:58:07.095+00:00"/>
+        <source value="#u36itOEPHYIyfjrm"/>
+    </meta>
+    <url value="https://healthdataworks.net/JP-ePrescription/ValueSet-ConfirmLeftoverMedicine.html"/>
+    <name value="ConfirmLeftoverMedicine"/>
+    <title value="残薬確認指⽰コード"/>
+    <status value="draft"/>
+    <description value="残薬確認指⽰コード"/>
+    <compose>
+        <include>
+            <system value="urn:oid:1.2.392.100495.20.2.42"/>
+        </include>
+    </compose>
+</ValueSet>

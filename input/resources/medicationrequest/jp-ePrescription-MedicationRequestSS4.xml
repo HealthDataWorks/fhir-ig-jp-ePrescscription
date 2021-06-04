@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationRequest
+    xmlns="http://hl7.org/fhir">
+    <id value="jp-ePrescription-MedicationRequestSS4"/>
+    <meta>
+        <versionId value="1"/>
+        <lastUpdated value="2021-06-04T05:42:08.271+00:00"/>
+        <source value="#v14rKXzbQenw6yyZ"/>
+    </meta>
+    <text>
+        <status value="generated"/>
+        <div
+            xmlns="http://www.w3.org/1999/xhtml">
+            <ul>
+                <li>RP:3</li>
+                <li>ボラギノールＮ坐薬</li>
+                <li>外用・肛門挿入・１日２回朝夕</li>
+                <li>１個（１日２個）</li>
+                <li>14日分</li>
+            </ul>
+        </div>
+    </text>
+    <identifier>
+        <system value="urn:oid:1.2.392.100495.20.3.81"/>
+        <value value="3"/>
+    </identifier>
+    <identifier>
+        <system value="urn:oid:1.2.392.100495.20.3.82"/>
+        <value value="1"/>
+    </identifier>
+    <status value="active"/>
+    <intent value="order"/>
+    <medicationCodeableConcept>
+        <coding>
+            <system value="urn:oid:1.2.392.200119.4.403.1"/>
+            <code value="105625901"/>
+            <display value="ボラギノールＮ坐薬"/>
+        </coding>
+    </medicationCodeableConcept>
+    <subject>
+        <reference value="Patient/jp-ePrescription-PatientSS"/>
+    </subject>
+    <authoredOn value="2020-08-21T12:28:17+09:00"/>
+    <dosageInstruction>
+        <text value="外用・肛門挿入・１日２回朝夕 1回1 個（1日2 個）"/>
+        <timing>
+            <code>
+                <coding>
+                    <system value="urn:oid:1.2.392.200250.2.2.20.20"/>
+                    <code value="2R62090900000000"/>
+                    <display value="外用・肛門挿入・１日２回朝夕"/>
+                </coding>
+            </code>
+        </timing>
+        <site>
+            <coding>
+                <system value="urn:oid:1.2.392.200250.2.2.20.32"/>
+                <code value="8H0"/>
+                <display value="肛門部"/>
+            </coding>
+        </site>
+        <route>
+            <coding>
+                <system value="urn:oid:1.2.392.200250.2.2.20.40"/>
+                <code value="2R"/>
+                <display value="肛門挿入"/>
+            </coding>
+        </route>
+        <method>
+            <coding>
+                <system value="urn:oid:1.2.392.200250.2.2.20.30"/>
+                <code value="2"/>
+                <display value="外用"/>
+            </coding>
+        </method>
+        <doseAndRate>
+            <type>
+                <coding>
+                    <system value="urn:oid:1.2.392.100495.20.2.22"/>
+                    <code value="1"/>
+                    <display value="製剤量"/>
+                </coding>
+            </type>
+            <doseQuantity>
+                <value value="1"/>
+                <unit value="個"/>
+                <system value="urn:oid:1.2.392.100495.20.2.101"/>
+                <code value="KO"/>
+            </doseQuantity>
+            <rateRatio>
+                <numerator>
+                    <value value="2"/>
+                    <unit value="個"/>
+                    <system value="urn:oid:1.2.392.100495.20.2.101"/>
+                    <code value="KO"/>
+                </numerator>
+                <denominator>
+                    <value value="1"/>
+                    <unit value="日"/>
+                    <system value="http://unitsofmeasure.org"/>
+                    <code value="d"/>
+                </denominator>
+            </rateRatio>
+        </doseAndRate>
+    </dosageInstruction>
+    <dispenseRequest>
+        <quantity>
+            <value value="28"/>
+            <unit value="個"/>
+            <system value="urn:oid:1.2.392.100495.20.2.101"/>
+            <code value="KO"/>
+        </quantity>
+        <expectedSupplyDuration>
+            <value value="14"/>
+            <unit value="日"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="d"/>
+        </expectedSupplyDuration>
+    </dispenseRequest>
+    <substitution>
+        <allowedCodeableConcept>
+            <coding>
+                <system value="urn:oid:1.2.392.100495.20.2.41"/>
+                <code value="0"/>
+                <display value="変更可"/>
+            </coding>
+        </allowedCodeableConcept>
+    </substitution>
+</MedicationRequest>

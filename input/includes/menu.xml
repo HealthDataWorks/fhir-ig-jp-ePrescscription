@@ -1,0 +1,19 @@
+<ul xmlns="http://www.w3.org/1999/xhtml" class="nav navbar-nav">
+  <li><a href="index.html">IG Home</a></li>
+  <li><a href="toc.html">Table of Contents</a></li>
+  <li><a href="summary.html">概要</a></li>
+
+  <li><a href="usecase.html">ユースケース</a></li>
+
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">ガイダンス<b class="caret">
+      </b>
+    </a>
+    <ul class="dropdown-menu">
+      <li><a href="structure.html">電子処方箋FHIR記述の全体構造</a></li>
+      <li><a href="descriptionmethod.html">処方箋の運用に関係する情報の記述方法</a></li>
+      <li><a href="prescription.html">医師の分割指示に係る処方箋</a></li>
+      <li><a href="datatype.html">データタイプについて</a></li>
+      <li><a href="namespace.html">名前空間と識別ID</a></li>    </ul>
+  </li>  <li><a href="artifacts.html">Artifact Index</a></li>
+</ul>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValueSet
+    xmlns="http://hl7.org/fhir">
+    <id value="jp-ePrescription-ValueSet5"/>
+    <meta>
+        <versionId value="1"/>
+        <lastUpdated value="2021-06-04T04:59:02.913+00:00"/>
+        <source value="#xLmYwuFPXTgvDKo3"/>
+    </meta>
+    <url value="https://healthdataworks.net/JP-ePrescription/ValueSet-DrugCode.html"/>
+    <name value="DrugCode"/>
+    <title value="医薬品コード（医薬品マスター）"/>
+    <status value="draft"/>
+    <description value="医薬品コード（レセ電算医薬品コード）"/>
+    <compose>
+        <include>
+            <system value="urn:oid:1.2.392.100495.20.1.71"/>
+        </include>
+    </compose>
+</ValueSet>

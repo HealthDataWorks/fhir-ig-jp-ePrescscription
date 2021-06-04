@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeSystem
+    xmlns="http://hl7.org/fhir">
+    <id value="jp-ePrescription-CodeSystem3"/>
+    <meta>
+        <versionId value="1"/>
+        <lastUpdated value="2021-06-04T05:14:23.899+00:00"/>
+        <source value="#Dj2FTsV1bdQUHilk"/>
+    </meta>
+    <url value="https://healthdataworks.net/JP-electronic-prescription/CodeSystem-CodeSystem3.html"/>
+    <identifier>
+        <use value="official"/>
+        <system value="http://jpfhir.jp/fhir/ePrescription/CodeSystem/PrescriptionSection"/>
+    </identifier>
+    <name value="CodeSystem3"/>
+    <title value="セクション区分コード"/>
+    <status value="draft"/>
+    <description value="urn:oid:1.2.392.100495.20.2.12"/>
+    <content value="not-present"/>
+</CodeSystem>

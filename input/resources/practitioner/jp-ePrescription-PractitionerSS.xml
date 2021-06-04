@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Practitioner
+    xmlns="http://hl7.org/fhir">
+    <id value="jp-ePrescription-PractitionerSS"/>
+    <meta>
+        <versionId value="1"/>
+        <lastUpdated value="2021-06-04T05:43:12.633+00:00"/>
+        <source value="#3jAb7d72k22wotm2"/>
+    </meta>
+    <text>
+        <status value="generated"/>
+        <div
+            xmlns="http://www.w3.org/1999/xhtml">
+            <ul>
+                <li>神奈川花子</li>
+                <li>カナガワ ハナコ</li>
+                <li>麻薬施用者免許番号：4-321</li>
+            </ul>
+        </div>
+    </text>
+    <name>
+        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-representation">
+            <valueCode value="IDE"/>
+        </extension>
+        <text value="神奈川花子"/>
+        <family value="神奈川"/>
+        <given value="花子"/>
+    </name>
+    <name>
+        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-representation">
+            <valueCode value="SYL"/>
+        </extension>
+        <text value="カナガワハナコ"/>
+        <family value="カナガワ"/>
+        <given value="ハナコ"/>
+    </name>
+    <qualification>
+        <identifier>
+            <system value="urn:oid:1.2.392.100495.20.3.32.13"/>
+            <value value="4-321"/>
+        </identifier>
+        <code>
+            <coding>
+                <system value="http://terminology.hl7.org/CodeSystem/v2-0360/2.7"/>
+                <code value="BS"/>
+                <display value="Bachelor of Science"/>
+            </coding>
+            <text value="Bachelor of Science"/>
+        </code>
+    </qualification>
+</Practitioner>
