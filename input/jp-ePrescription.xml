@@ -3,9 +3,9 @@
     xmlns="http://hl7.org/fhir">
     <id value="jp-ePrescription"/>
     <meta>
-        <versionId value="1"/>
-        <lastUpdated value="2021-06-04T06:28:40.361+00:00"/>
-        <source value="#kt7CUH0DaBTWVz8m"/>
+        <versionId value="20"/>
+        <lastUpdated value="2021-06-08T08:40:55.982+00:00"/>
+        <source value="#vqrThN3QEgojQ1Yj"/>
     </meta>
     <url value="https://healthdataworks.net/hl7-fhir/ImplementationGuide/jp-ePrescription"/>
     <version value="0.5.0"/>
@@ -704,7 +704,7 @@
         <resource>
             <reference>
                 <reference value="Encounter/jp-ePrescription-EncounterSS"/></reference>
-            <name value="Encounterリソース記述例"/>
+            <name value="Encounterリソースの記述例"/>
             <exampleBoolean value="true"/>
         </resource>
         <resource>
@@ -746,14 +746,14 @@
         </resource>
         <resource>
             <reference>
-                <reference value="Practitioner/jp-ePrescription-PractitionerSS"/></reference>
-            <name value="Practitioner リソース（処⽅医情報）の記述例"/>
+                <reference value="PractitionerRole/jp-ePrescription-PractitionerRoleSS"/></reference>
+            <name value="PractitionerRole リソース（処⽅医役割情報）の記述例"/>
             <exampleBoolean value="true"/>
         </resource>
         <resource>
             <reference>
-                <reference value="PractitionerRole/jp-ePrescription-PractitionerRoleSS"/></reference>
-            <name value="PractitionerRole リソース（処⽅医役割情報）"/>
+                <reference value="Practitioner/jp-ePrescription-PractitionerSS"/></reference>
+            <name value="Practitioner リソース（処⽅医情報）の記述例"/>
             <exampleBoolean value="true"/>
         </resource>
         <resource>
@@ -783,47 +783,38 @@
         <resource>
             <reference>
                 <reference value="MedicationRequest/jp-ePrescription-MedicationRequestSS8-1"/></reference>
-            <name value="不均等投与インスタンス例（１回ごと記述）剤グループ1"/>
+            <name value="不均等投与インスタンスの記述例（１回ごと記述）剤グループ1"/>
             <exampleBoolean value="true"/>
         </resource>
         <resource>
             <reference>
                 <reference value="MedicationRequest/jp-ePrescription-MedicationRequestSS8-2"/></reference>
-            <name value="不均等投与インスタンス例（１回ごと記述）剤グループ2"/>
+            <name value="不均等投与インスタンスの記述例（１回ごと記述）剤グループ2"/>
             <exampleBoolean value="true"/>
         </resource>
         <resource>
             <reference>
                 <reference value="MedicationRequest/jp-ePrescription-MedicationRequestSS8-3"/></reference>
-            <name value="不均等投与インスタンス例（１回ごと記述）剤グループ3"/>
+            <name value="不均等投与インスタンスの記述例（１回ごと記述）剤グループ3"/>
             <exampleBoolean value="true"/>
         </resource>
         <resource>
             <reference>
                 <reference value="MedicationRequest/jp-ePrescription-MedicationRequestSS5"/></reference>
-            <name value="不均等投与インスタンス例（１⽇⽤法で記述）"/>
+            <name value="不均等投与インスタンスの記述例（１⽇⽤法で記述）"/>
             <exampleBoolean value="true"/>
         </resource>
         <resource>
             <reference>
                 <reference value="MedicationRequest/jp-ePrescription-MedicationRequestSS6"/></reference>
-            <name value="隔⽇投与のインスタンス例"/>
+            <name value="隔⽇投与のインスタンスの記述例"/>
             <exampleBoolean value="true"/>
         </resource>
         <resource>
             <reference>
                 <reference value="MedicationRequest/jp-ePrescription-MedicationRequestSS7"/></reference>
-            <name value="曜⽇指定のインスタンス例"/>
+            <name value="曜⽇指定のインスタンスの記述例"/>
             <exampleBoolean value="true"/>
-        </resource>
-        <resource>
-            <reference>
-                <reference value="Bundle/jp-ePrescription-BundleSS"/>
-                <display value="jp-electronic-prescription-BundleSS"/>
-            </reference>
-            <name value="分割処方箋記述例"/>
-            <exampleBoolean value="false"/>
-            <exampleCanonical value="https://healthdataworks.net/JP-ePrescription/StructureDefinition/Bundle2"/>
         </resource>
         <resource>
             <reference>
@@ -842,6 +833,15 @@
                 <reference value="MedicationRequest/jp-ePrescription-MedicationRequestSS9-3"/></reference>
             <name value="漸増処⽅の記述例(3)"/>
             <exampleBoolean value="true"/>
+        </resource>
+        <resource>
+            <reference>
+                <reference value="Bundle/jp-ePrescription-BundleSS"/>
+                <display value="jp-electronic-prescription-BundleSS"/>
+            </reference>
+            <name value="分割処方箋の記述例"/>
+            <exampleBoolean value="false"/>
+            <exampleCanonical value="https://healthdataworks.net/JP-ePrescription/StructureDefinition/Bundle2"/>
         </resource>
         <page>
             <nameUrl value="index.html"/>

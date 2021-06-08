@@ -1,10 +1,7 @@
 [Previous Page - 医師の分割指示に係る処方箋](prescription.html)
 
 ### 基本データタイプ（Primitive Types）
-HL7FHIR で使用される基本データタイプ（Primitive Types） について、本
-仕様書で出現しなかったものも含めて説明する。本記述は、
-[http://hl7.org/fhir/datatypes.html](http://hl7.org/fhir/datatypes.html) のPrimitive Types の記述を参考にして
-意訳している。
+HL7FHIR で使用される基本データタイプ（Primitive Types） について、本仕様書で出現しなかったものも含めて説明する。本記述は、[http://hl7.org/fhir/datatypes.html](http://hl7.org/fhir/datatypes.html) のPrimitive Types の記述を参考にして意訳している。
 
 |基本データタイプ|説明・とりうる値|
 |---|---|

@@ -11,11 +11,7 @@
 ### 後発品変更可否
 MedicationRequest リソースの substitution 要素に記録する。
 
-substitution.allowedCodeableConcept 要素に、CodeableConcept 型で後発品
-変更可否コード（urn:oid:1.2.392.100495.2.41）を指定する。もし変更可否の理
-由を明示したい場合は、"substitution.reason"要素に文字列で指定することが
-できる。後発品変更可否コードの指定は必須とし、変更可の場合であっても必
-ず「0:変更可」を指定する。
+substitution.allowedCodeableConcept 要素に、CodeableConcept 型で後発品変更可否コード（urn:oid:1.2.392.100495.2.41）を指定する。もし変更可否の理由を明示したい場合は、"substitution.reason"要素に文字列で指定することができる。後発品変更可否コードの指定は必須とし、変更可の場合であっても必ず「0:変更可」を指定する。
 
 以下にsubstitution の記述例を示す。
 
@@ -37,15 +33,9 @@ substitution.allowedCodeableConcept 要素に、CodeableConcept 型で後発品
 ```
 
 ### 後発品変更不可時の電子署名
-後発医薬品の変更不可をする場合は、処方医の署名が必要となる。電子処方箋
-では電子署名で実現される。
+後発医薬品の変更不可をする場合は、処方医の署名が必要となる。電子処方箋では電子署名で実現される。
 
-電子署名は、後発医薬品の変更不可としたMedicationRequest リソースごと
-に、MedicationRequest リソースに対する拡張「Signature」を利用し、
-Signature 型で署名データを記録する。署名対象データは、後発医薬品への変
-更不可としたMedicationRequest リソースを表す resource 要素のカノニカル
-JSON 文字列を署名対象データとし、SHA256 により生成したハッシュ値とす
-る。
+電子署名は、後発医薬品の変更不可としたMedicationRequest リソースごとに、MedicationRequest リソースに対する拡張「Signature」を利用し、Signature 型で署名データを記録する。署名対象データは、後発医薬品への変更不可としたMedicationRequest リソースを表す resource 要素のカノニカルJSON 文字列を署名対象データとし、SHA256 により生成したハッシュ値とする。
 
 記述例を示す。
 
@@ -81,19 +71,14 @@ WVmNmI5NQ=="
 ```
 
 ### 備考情報
-「4.9.8 調剤補足情報」で示したCommunication リソースを使用して、処方箋
-全体にかかわる備考を記録する。本リソースは、処方情報セクションに格納す
-る。例とし、以下のような情報を記載することを想定している。
+「4.1.9.8 調剤補足情報」で示したCommunication リソースを使用して、処方箋全体にかかわる備考を記録する。本リソースは、処方情報セクションに格納する。例とし、以下のような情報を記載することを想定している。
 
 * 限度量を超えた投与を行う理由
 * ６歳・高一・高７
 * 湿布薬の多量投与を判断した趣旨
 * 地域包括診療加算等を算定している旨
 
-Communication リソース、category 要素には、このリソースが処方箋全体の
-備考を表していることを識別するために、Communication.category 要素に指定
-するコード（[http://jpfhir.jp/fhir/ePrescription/CodeSystem/CommunicationCategory](http://jpfhir.jp/fhir/ePrescription/CodeSystem/CommunicationCategory)）から
-「1:処方箋備考」を指定する。
+Communication リソース、category 要素には、このリソースが処方箋全体の備考を表していることを識別するために、Communication.category 要素に指定するコード（[http://jpfhir.jp/fhir/ePrescription/CodeSystem/CommunicationCategory](http://jpfhir.jp/fhir/ePrescription/CodeSystem/CommunicationCategory)）から「1:処方箋備考」を指定する。
 
 以下に、テキストによる備考のみを含む記述例を示す。
 
@@ -124,15 +109,7 @@ Communication リソース、category 要素には、このリソースが処方
 ```
 
 ### 残薬確認指示
-「4.9.8 調剤補足情報」で示したCommunication リソースを使用して、残薬確
-認指示を記録する。残薬確認指示は、コードとして
-Communication.extension.extensin.valueCodeableCocept 要素に
-CodeableConcept 型で記録する。コードは、残薬確認指示コード
-（urn:oid:1.2.392.100495.20.2.42）からのコードを指定する。このリソースが
-残薬確認指示を表していることを識別するために、Communication.category 要
-素に指定するコード（[http://jpfhir.jp/fhir/ePrescription/CodeSystem/CommunicationCategory](http://jpfhir.jp/fhir/ePrescription/CodeSystem/CommunicationCategory)）か
-ら、「3:残薬確認指示」を指定する。本リソースは、処方情報セクションに格
-納する。
+「4.1.9.8 調剤補足情報」で示したCommunication リソースを使用して、残薬確認指示を記録する。残薬確認指示は、コードとしてCommunication.extension.extensin.valueCodeableCocept 要素にCodeableConcept 型で記録する。コードは、残薬確認指示コード（urn:oid:1.2.392.100495.20.2.42）からのコードを指定する。このリソースが残薬確認指示を表していることを識別するために、Communication.category 要素に指定するコード（[http://jpfhir.jp/fhir/ePrescription/CodeSystem/CommunicationCategory](http://jpfhir.jp/fhir/ePrescription/CodeSystem/CommunicationCategory)）から、「3:残薬確認指示」を指定する。本リソースは、処方情報セクションに格納する。
 
 Communication の記述例を示す。
 
