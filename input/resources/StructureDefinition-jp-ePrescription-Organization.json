@@ -1,0 +1,207 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "jp-ePrescription-Organization",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2021-06-04T04:37:18.492+00:00",
+    "source": "#swwpBGGoSij8EiHl"
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
+      "valueString": "Base.Entities"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category",
+      "valueCode": "business"
+    }
+  ],
+  "url": "https://healthdataworks.net/JP-ePrescription/StructureDefinition/Organization",
+  "version": "0.5.0",
+  "name": "Organization",
+  "title": "Organizationリソース　保険者情報",
+  "status": "active",
+  "description": "保険種別が「6:自費」以外の場合、費用負担者情報を、Coverage リソースの\npayor から参照されるOrganization リソースとして記録する。保険種別が「1:\n医保」、「2:国保」、「7:後期高齢者」の場合は保険者を意味し、\nOrganization.identifier 要素に保険者番号を記録する。その他の保険種別の場合\nは、identifier 要素は出現しない。費用負担者の名称を可能な範囲で\nOrganization.name 要素に記録する。",
+  "fhirVersion": "4.0.1",
+  "mapping": [
+    {
+      "identity": "v2",
+      "uri": "http://hl7.org/v2",
+      "name": "HL7 v2 Mapping"
+    },
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "servd",
+      "uri": "http://www.omg.org/spec/ServD/1.0/",
+      "name": "ServD"
+    },
+    {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/fivews",
+      "name": "FiveWs Pattern Mapping"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "Organization",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Organization",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Organization",
+        "path": "Organization",
+        "short": "Organization リソースであることを示す"
+      },
+      {
+        "id": "Organization.text",
+        "path": "Organization.text",
+        "short": "本リソースをテキストで表現したものを入れてもよい。",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.text.status",
+        "path": "Organization.text.status",
+        "short": "テキスト内容の全てがリソースのコンテンツから生成されたことを示す。",
+        "fixedCode": "generated",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.text.div",
+        "path": "Organization.text.div",
+        "example": [
+          {
+            "label": "Example for xhtml",
+            "valueString": "<div\r\n                        xmlns=\"http://www.w3.org/1999/xhtml\">xxx</div>"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier",
+        "path": "Organization.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        }
+      },
+      {
+        "id": "Organization.identifier:1",
+        "path": "Organization.identifier",
+        "sliceName": "1",
+        "short": "保険種別が「1：医保」、「2：国保」、「7：後期高齢者」の場合は、保険者番号を記録する。それ以外の場合は、本要素は出現しない。",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier:1.system",
+        "path": "Organization.identifier.system",
+        "short": "保険者番号の名前空間を示すURI を指定。",
+        "min": 1,
+        "fixedUri": "urn:oid:1.2.392.100495.20.3.61",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier:1.value",
+        "path": "Organization.identifier.value",
+        "short": "保険者番号。",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "06123456"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier:2",
+        "path": "Organization.identifier",
+        "sliceName": "2",
+        "short": "保険種別が「8：公費」の場合は、公費負担者番号を記録する。それ以外の場合は、本要素は出現しない。",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier:2.system",
+        "path": "Organization.identifier.system",
+        "short": "公費負担者番号の名前空間を示すURI。",
+        "min": 1,
+        "fixedUri": "urn:oid:1.2.392.100495.20.3.71",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier:2.value",
+        "path": "Organization.identifier.value",
+        "short": "公費負担者番号。",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "01234567"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.type",
+        "path": "Organization.type",
+        "short": "施設種別コード。",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.type.coding",
+        "path": "Organization.type.coding",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.type.coding.system",
+        "path": "Organization.type.coding.system",
+        "short": "施設種別コードのコード体系を識別するURI。",
+        "min": 1,
+        "fixedUri": "http://terminology.hl7.org/CodeSystem/organization-type",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.type.coding.code",
+        "path": "Organization.type.coding.code",
+        "short": "費用負担者が保険者の場合は”ins”。それ以外の場合は、その他を意味する “other”を指定",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for code",
+            "valueCode": "ins"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.name",
+        "path": "Organization.name",
+        "short": "費用負担者の名称。",
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "サンプル保険組合"
+          }
+        ],
+        "mustSupport": true
+      }
+    ]
+  }
+}

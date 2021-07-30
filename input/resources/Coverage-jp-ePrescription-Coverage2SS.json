@@ -1,0 +1,60 @@
+{
+  "resourceType": "Coverage",
+  "id": "jp-ePrescription-Coverage2SS",
+  "meta": {
+    "profile": [
+      "https://healthdataworks.net/JP-ePrescription/StructureDefinition/Coverage"
+    ],
+    "versionId": "1",
+    "lastUpdated": "2021-06-04T05:41:15.283+00:00",
+    "source": "#FGnTlFoK1pcWERgh"
+  },
+  "status": "active",
+  "type": {
+    "coding": [
+      {
+        "system": "urn:oid:1.2.392.100495.20.2.61",
+        "code": "8"
+      }
+    ]
+  },
+  "relationship": {
+    "coding": [
+      {
+        "system": "urn:oid:1.2.392.100495.20.2.62"
+      }
+    ]
+  },
+  "costToBeneficiary": [
+    {
+      "type": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/coverage-copay-type",
+            "code": "copaypct"
+          }
+        ]
+      },
+      "valueQuantity": {
+        "value": 10,
+        "code": "%",
+        "system": "http://unitsofmeasure.org",
+        "unit": "%"
+      }
+    }
+  ],
+  "subscriberId": "12345678",
+  "beneficiary": {
+    "reference": "Patient/jp-ePrescription-PatientSS"
+  },
+  "period": {
+    "start": "2020-01-01",
+    "end": "2020-12-31"
+  },
+  "payor": [
+    {
+      "reference": "Organization/jp-ePrescription-OrganizationSS"
+    }
+  ],
+  "order": 1
+}

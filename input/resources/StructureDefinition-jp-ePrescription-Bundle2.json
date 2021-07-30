@@ -1,0 +1,383 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "jp-ePrescription-Bundle2",
+  "meta": {
+    "versionId": "3",
+    "lastUpdated": "2021-06-04T06:49:12.039+00:00",
+    "source": "#bTYaBvmB82ZgVxil"
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
+      "valueString": "Foundation.Other"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category",
+      "valueCode": "not-classified"
+    }
+  ],
+  "url": "https://healthdataworks.net/JP-ePrescription/StructureDefinition/Bundle2",
+  "version": "0.5.0",
+  "name": "Bundle2",
+  "title": "Bundleリソース　文書情報（処方箋・分割処方）",
+  "status": "active",
+  "description": "分割処方箋を表すBundle リソースの構造を示す。",
+  "fhirVersion": "4.0.1",
+  "mapping": [
+    {
+      "identity": "v2",
+      "uri": "http://hl7.org/v2",
+      "name": "HL7 v2 Mapping"
+    },
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "cda",
+      "uri": "http://hl7.org/v3/cda",
+      "name": "CDA (R2)"
+    },
+    {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/fivews",
+      "name": "FiveWs Pattern Mapping"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "Bundle",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Bundle",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Bundle",
+        "path": "Bundle",
+        "short": "Bundle リソースであることを示す"
+      },
+      {
+        "id": "Bundle.meta",
+        "path": "Bundle.meta",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.meta.profile",
+        "path": "Bundle.meta.profile",
+        "short": "本文書のプロファイルを識別するURLを指定する。値は例示である。今後決定されるURLを指定すること。",
+        "min": 1,
+        "max": "1",
+        "example": [
+          {
+            "label": "Example for canonical",
+            "valueString": "http://jpfhir.jp/fhir/ePrescription/StructureDefinition/ePrescription-Bundle/1.0"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.type",
+        "path": "Bundle.type",
+        "short": "Bundle リソースがDocumentタイプであることを示す",
+        "fixedCode": "document",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.timestamp",
+        "path": "Bundle.timestamp",
+        "short": "このリソースを生成した日時。時刻の精度はミリ秒とし、タイムゾーンを含めること。",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for instant",
+            "valueInstant": "2021-02-01T13:28:17.239+09:00"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry",
+        "path": "Bundle.entry",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "profile",
+              "path": "resource"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 6,
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:1",
+        "path": "Bundle.entry",
+        "sliceName": "1",
+        "short": "Bundle に含まれる全リソースエントリのリスト。",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:1.fullUrl",
+        "path": "Bundle.entry.fullUrl",
+        "short": "エントリリスト内のリソースを一意に識別するためのUUID。",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for uri",
+            "valueUri": "urn:uuid:180f219f-97a8-486d-99d9-ed631fe4fc57"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:1.resource",
+        "path": "Bundle.entry.resource",
+        "short": "構成リソース一覧目次に相当。Composition リソース",
+        "min": 1,
+        "type": [
+          {
+            "code": "Composition",
+            "profile": [
+              "https://healthdataworks.net/JP-ePrescription/StructureDefinition/Composition2"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:2",
+        "path": "Bundle.entry",
+        "sliceName": "2",
+        "short": "分割処方箋に含まれる１つの処方箋に対応するBundle エントリ。処方箋の数だけ繰り返す。分割処方箋は最大3 分割処方まで認められている。",
+        "min": 1,
+        "max": "3",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:2.fullUrl",
+        "path": "Bundle.entry.fullUrl",
+        "short": "エントリリスト内のリソースを一意に識別するためのUUID。",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for uri",
+            "valueUri": "urn:uuid:9495ef34-a77d-4f3e-8dce-5688e169d0fa"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:2.resource",
+        "path": "Bundle.entry.resource",
+        "short": "１つの処方箋箋を表すBundle リソース。",
+        "min": 1,
+        "type": [
+          {
+            "code": "Bundle",
+            "profile": [
+              "https://healthdataworks.net/JP-ePrescription/StructureDefinition/Bundle_DocumentContents"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:3",
+        "path": "Bundle.entry",
+        "sliceName": "3",
+        "short": "患者情報エントリ",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:3.fullUrl",
+        "path": "Bundle.entry.fullUrl",
+        "short": "エントリリスト内のリソースを一意に識別するためのUUID。",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for uri",
+            "valueUri": "urn:uuid:11f0a9a6-a91d-3aeffc4e-069995b89c4f"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:3.resource",
+        "path": "Bundle.entry.resource",
+        "short": "患者情報（4.4）Patient リソース",
+        "min": 1,
+        "type": [
+          {
+            "code": "Patient",
+            "profile": [
+              "https://healthdataworks.net/JP-ePrescription/StructureDefinition/Patient"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:4",
+        "path": "Bundle.entry",
+        "sliceName": "4",
+        "short": "処方医療機関情報エントリ",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:4.fullUrl",
+        "path": "Bundle.entry.fullUrl",
+        "short": "エントリリスト内のリソースを一意に識別するためのUUID。",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for uri",
+            "valueUri": "urn:uuid:ef7892cc-fb3a-b951-9ac7-f8cd6c746f0a"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:4.resource",
+        "path": "Bundle.entry.resource",
+        "short": "処方医療機関情報（4.7.1）Organization リソース",
+        "min": 1,
+        "type": [
+          {
+            "code": "Organization",
+            "profile": [
+              "https://healthdataworks.net/JP-ePrescription/StructureDefinition/Organization2"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:5",
+        "path": "Bundle.entry",
+        "sliceName": "5",
+        "short": "診療科情報エントリ",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:5.fullUrl",
+        "path": "Bundle.entry.fullUrl",
+        "short": "エントリリスト内のリソースを一意に識別するためのUUID。",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for uri",
+            "valueUri": "urn:uuid:7f60d206-66c5-4998-931e-86bf2b2d0bdc"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:5.resource",
+        "path": "Bundle.entry.resource",
+        "short": "診療科情報（4.7.2）Organization リソース",
+        "min": 1,
+        "type": [
+          {
+            "code": "Organization",
+            "profile": [
+              "https://healthdataworks.net/JP-ePrescription/StructureDefinition/Organization3"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:6",
+        "path": "Bundle.entry",
+        "sliceName": "6",
+        "short": "処方医役割情報エントリ",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:6.fullUrl",
+        "path": "Bundle.entry.fullUrl",
+        "short": "エントリリスト内のリソースを一意に識別するためのUUID。",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for uri",
+            "valueUri": "urn:uuid:7f60d206-66c5-4998-931e-86bf2b2d0bdc"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:6.resource",
+        "path": "Bundle.entry.resource",
+        "short": "処方医役割情報（4.8.1）PractitionerRole リソース",
+        "min": 1,
+        "type": [
+          {
+            "code": "PractitionerRole",
+            "profile": [
+              "https://healthdataworks.net/JP-ePrescription/StructureDefinition/PractitionerRole"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:7",
+        "path": "Bundle.entry",
+        "sliceName": "7",
+        "short": "処方医師情報エントリ",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:7.fullUrl",
+        "path": "Bundle.entry.fullUrl",
+        "short": "エントリリスト内のリソースを一意に識別するためのUUID。",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for uri",
+            "valueUri": "urn:uuid:195a292d-169a-5cc4-0e10-7a1c0d3fcb2b"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:7.resource",
+        "path": "Bundle.entry.resource",
+        "short": "処方医師情報（4.8.2）Practitioner リソース",
+        "min": 1,
+        "type": [
+          {
+            "code": "Practitioner",
+            "profile": [
+              "https://healthdataworks.net/JP-ePrescription/StructureDefinition/Practitioner"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.signature",
+        "path": "Bundle.signature",
+        "short": "分割処方箋全体に対する署名情報",
+        "min": 1,
+        "mustSupport": true
+      }
+    ]
+  }
+}

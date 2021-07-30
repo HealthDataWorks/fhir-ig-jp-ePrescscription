@@ -1,0 +1,22 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "not-present",
+  "name": "CodeSystem4",
+  "id": "jp-ePrescription-CodeSystem4",
+  "title": "医療従事者資格",
+  "description": "http://jpfhir.jp/fhir/ePrescription/CodeSystem/Certificate",
+  "version": "0.5.0",
+  "url": "https://healthdataworks.net/JP-electronic-prescription/CodeSystem-CodeSystem4.html",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2021-06-04T05:14:29.308+00:00",
+    "source": "#hdfOoQAlwUIjEwtB"
+  },
+  "identifier": [
+    {
+      "use": "official",
+      "system": "http://jpfhir.jp/fhir/ePrescription/CodeSystem/Certificate"
+    }
+  ]
+}

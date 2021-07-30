@@ -1,0 +1,15 @@
+{
+  "resourceType": "ValueSet",
+  "status": "draft",
+  "name": "GS1Code",
+  "id": "jp-ePrescription-ValueSet9",
+  "title": "GS1コード",
+  "description": "医薬品GS1コード",
+  "version": "0.5.0",
+  "url": "https://healthdataworks.net/JP-ePrescription/ValueSet-GS1Code.html",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2021-06-04T04:59:24.516+00:00",
+    "source": "#l6MfJ4MvW1JnbATy"
+  }
+}

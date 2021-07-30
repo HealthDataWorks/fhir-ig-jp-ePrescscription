@@ -1,0 +1,22 @@
+{
+  "resourceType": "ValueSet",
+  "status": "draft",
+  "name": "PrescriptionRemark",
+  "id": "jp-ePrescription-ValueSet17",
+  "title": "処⽅箋備考区分",
+  "description": "処⽅箋備考区分",
+  "version": "0.5.0",
+  "url": "https://healthdataworks.net/JP-ePrescription/ValueSet-PrescriptionRemark.html",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2021-06-04T05:00:35.811+00:00",
+    "source": "#bdLGU2KaG323hKdB"
+  },
+  "compose": {
+    "include": [
+      {
+        "system": "http://jpfhir.jp/fhir/ePrescription/CodeSystem/CommunicationCategory"
+      }
+    ]
+  }
+}

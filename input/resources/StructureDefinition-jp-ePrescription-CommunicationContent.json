@@ -1,0 +1,43 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "jp-ePrescription-CommunicationContent",
+  "meta": {
+    "versionId": "3",
+    "lastUpdated": "2021-06-04T06:09:36.748+00:00",
+    "source": "#0fDbYrmR6kt5lndG"
+  },
+  "url": "http://jpfhir.jp/fhir/ePrescription/StructureDefinition/CommunicationContent",
+  "version": "0.5.0",
+  "name": "CommunicationContent",
+  "title": "コミュニケーション内容",
+  "status": "active",
+  "description": "コミュニケーションの内容をコードまたはテキストで表現するための拡張",
+  "fhirVersion": "4.0.1",
+  "mapping": [
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "context": [
+    {
+      "type": "fhirpath",
+      "expression": "Communication"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "http://jpfhir.jp/fhir/ePrescription/StructureDefinition/CommunicationContent"
+      }
+    ]
+  }
+}

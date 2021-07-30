@@ -1,0 +1,22 @@
+{
+  "resourceType": "ValueSet",
+  "status": "draft",
+  "name": "TiterClassification",
+  "id": "jp-ePrescription-ValueSet16",
+  "title": "⼒価区分",
+  "description": "⼒価区分",
+  "version": "0.5.0",
+  "url": "https://healthdataworks.net/JP-ePrescription/ValueSet-TiterClassification.html",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2021-06-04T05:19:53.458+00:00",
+    "source": "#5gPA3GzeRupcBu4C"
+  },
+  "compose": {
+    "include": [
+      {
+        "system": "urn:oid:1.2.392.100495.20.2.22"
+      }
+    ]
+  }
+}

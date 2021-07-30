@@ -1,0 +1,162 @@
+{
+  "resourceType": "MedicationRequest",
+  "id": "jp-ePrescription-MedicationRequestSS",
+  "meta": {
+    "profile": [
+      "https://healthdataworks.net/JP-ePrescription/StructureDefinition/MedicationRequest"
+    ],
+    "versionId": "1",
+    "lastUpdated": "2021-06-04T05:42:08.221+00:00",
+    "source": "#W6yaiGtwWI8JA7qX"
+  },
+  "status": "active",
+  "intent": "order",
+  "identifier": [
+    {
+      "system": "urn:oid:1.2.392.100495.20.3.81",
+      "value": "1"
+    },
+    {
+      "system": "urn:oid:1.2.392.100495.20.3.82",
+      "value": "1"
+    },
+    {
+      "system": "urn:oid:1.2.392.100495.20.3.82"
+    }
+  ],
+  "dispenseRequest": {
+    "quantity": {
+      "system": "urn:oid:1.2.392.200119.4.403.1",
+      "code": "TAB"
+    },
+    "expectedSupplyDuration": {
+      "unit": "日",
+      "system": "http://unitsofmeasure.org",
+      "code": "d",
+      "value": 7
+    }
+  },
+  "extension": [
+    {
+      "url": "http://jpfhir.jp/fhir/ePrescription/StructureDefinition/UsageDuration",
+      "valueDuration": {
+        "value": 7,
+        "code": "d",
+        "system": "http://unitsofmeasure.org",
+        "unit": "日"
+      }
+    }
+  ],
+  "medicationCodeableConcept": {
+    "coding": [
+      {
+        "code": "103831601",
+        "system": "urn:oid:1.2.392.200119.4.403.1",
+        "display": "カルボシステイン錠２５０ｍｇ"
+      },
+      {
+        "code": "2233002F1280",
+        "system": "urn:oid:1.2.392.100495.20.2.73",
+        "display": "カルボシステイン錠２５０ｍｇ"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/jp-ePrescription-PatientSS"
+  },
+  "authoredOn": "2020-08-21T12:28:17+09:00",
+  "note": [
+    {
+      "text": "薬剤単位の備考"
+    }
+  ],
+  "dosageInstruction": [
+    {
+      "text": "内服・経口・１日３回朝昼夕食後 １回１錠 ７日分",
+      "timing": {
+        "repeat": {
+          "boundsDuration": {
+            "value": 7,
+            "code": "d",
+            "system": "http://unitsofmeasure.org",
+            "unit": "日"
+          }
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "1013044400000000",
+              "system": "urn:oid:1.2.392.200250.2.2.20.20",
+              "display": "内服・経口・１日３回朝昼夕食後"
+            }
+          ]
+        }
+      },
+      "route": {
+        "coding": [
+          {
+            "code": "10",
+            "system": "urn:oid:1.2.392.200250.2.2.20.40",
+            "display": "経口"
+          }
+        ]
+      },
+      "method": {
+        "coding": [
+          {
+            "code": "1",
+            "system": "urn:oid:1.2.392.200250.2.2.20.30",
+            "display": "内服"
+          }
+        ]
+      },
+      "doseAndRate": [
+        {
+          "type": {
+            "coding": [
+              {
+                "code": "1",
+                "system": "urn:oid:1.2.392.100495.20.2.22",
+                "display": "製剤量"
+              }
+            ]
+          },
+          "doseQuantity": {
+            "value": 1,
+            "code": "TAB",
+            "system": "urn:oid:1.2.392.100495.20.2.101",
+            "unit": "錠"
+          },
+          "rateRatio": {
+            "numerator": {
+              "value": 3,
+              "code": "TAB",
+              "system": "urn:oid:1.2.392.100495.20.2.101",
+              "unit": "錠"
+            },
+            "denominator": {
+              "value": 1,
+              "code": "d",
+              "system": "http://unitsofmeasure.org",
+              "unit": "日"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "substitution": {
+    "allowedCodeableConcept": {
+      "coding": [
+        {
+          "code": "1",
+          "system": "urn:oid:1.2.392.100495.20.2.41",
+          "display": "変更不可"
+        }
+      ]
+    },
+    "reason": {
+      "text": "患者からの強い要望により"
+    }
+  }
+}

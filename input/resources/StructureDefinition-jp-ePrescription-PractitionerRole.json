@@ -1,0 +1,203 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "jp-ePrescription-PractitionerRole",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2021-06-04T04:39:54.194+00:00",
+    "source": "#3v4Mvcugbj4ukyJ5"
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
+      "valueString": "Base.Individuals"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category",
+      "valueCode": "individual"
+    }
+  ],
+  "url": "https://healthdataworks.net/JP-ePrescription/StructureDefinition/PractitionerRole",
+  "version": "0.5.0",
+  "name": "PractitionerRole",
+  "title": "PractitionerRoleリソース　処方医役割情報",
+  "status": "active",
+  "description": "処方医を識別するID や番号として、医籍登録番号、もしくは処方医療機関に\nおける処方医ID（たとえば端末利用者アカウント、あるいは職員番号など）を\nPractitionerRole リソースのidentifier 要素に記録する。",
+  "fhirVersion": "4.0.1",
+  "mapping": [
+    {
+      "identity": "v2",
+      "uri": "http://hl7.org/v2",
+      "name": "HL7 v2 Mapping"
+    },
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "servd",
+      "uri": "http://www.omg.org/spec/ServD/1.0/",
+      "name": "ServD"
+    },
+    {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/fivews",
+      "name": "FiveWs Pattern Mapping"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "PractitionerRole",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/PractitionerRole",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "PractitionerRole",
+        "path": "PractitionerRole",
+        "short": "PractitionerRole リソースであることを示す"
+      },
+      {
+        "id": "PractitionerRole.text",
+        "path": "PractitionerRole.text",
+        "short": "本リソースをテキストで表現したものを入れてもよい。",
+        "mustSupport": true
+      },
+      {
+        "id": "PractitionerRole.text.status",
+        "path": "PractitionerRole.text.status",
+        "short": "テキスト内容の全てがリソースのコンテンツから生成されたことを示す。",
+        "fixedCode": "generated",
+        "mustSupport": true
+      },
+      {
+        "id": "PractitionerRole.text.div",
+        "path": "PractitionerRole.text.div",
+        "example": [
+          {
+            "label": "Example for xhtml",
+            "valueString": "<div\r\n                        xmlns=\"http://www.w3.org/1999/xhtml\">xxx</div>"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "PractitionerRole.identifier",
+        "path": "PractitionerRole.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        },
+        "mustSupport": true
+      },
+      {
+        "id": "PractitionerRole.identifier:1",
+        "path": "PractitionerRole.identifier",
+        "sliceName": "1",
+        "short": "医籍登録番号。可能な場合に記録する。",
+        "min": 0,
+        "max": "*",
+        "mustSupport": true
+      },
+      {
+        "id": "PractitionerRole.identifier:1.system",
+        "path": "PractitionerRole.identifier.system",
+        "short": "医籍登録番号の名前空間を識別するURI。",
+        "min": 1,
+        "fixedUri": "urn:oid:1.2.392.100495.20.3.31",
+        "mustSupport": true
+      },
+      {
+        "id": "PractitionerRole.identifier:1.value",
+        "path": "PractitionerRole.identifier.value",
+        "short": "医籍登録番号。",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "123456"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "PractitionerRole.identifier:2",
+        "path": "PractitionerRole.identifier",
+        "sliceName": "2",
+        "short": "処方医ID。付番方法については「7.1識別子名前空間一覧」を参照。",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "PractitionerRole.identifier:2.system",
+        "path": "PractitionerRole.identifier.system",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for uri",
+            "valueUri": "urn:oid:1.2.392.100495.20.3.41.11311234567"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "PractitionerRole.identifier:2.value",
+        "path": "PractitionerRole.identifier.value",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "123"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "PractitionerRole.practitioner",
+        "path": "PractitionerRole.practitioner",
+        "short": "処方医を表すPractitionerリソースへの参照",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "PractitionerRole.practitioner.reference",
+        "path": "PractitionerRole.practitioner.reference",
+        "short": "PractitionerリソースのfullUrl要素に指定されるUUID を指定。",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "urn:uuid:195a292d-169a-5cc4-0e10-7a1c0d3fcb2b"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "PractitionerRole.organization",
+        "path": "PractitionerRole.organization",
+        "short": "処方医療機関の診療科を記録する場合、診療科を表すOrganization リソースへの参照。診療科を記録しない場合は、処方医療機関を表すOrganization リソースへの参照。",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "PractitionerRole.organization.reference",
+        "path": "PractitionerRole.organization.reference",
+        "short": "Organization リソースのfullUrl要素に指定されるUUID を指定。",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "urn:uuid:179f9f7f-e546-04c2-6888-a9e0b24e5720"
+          }
+        ],
+        "mustSupport": true
+      }
+    ]
+  }
+}

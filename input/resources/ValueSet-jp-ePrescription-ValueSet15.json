@@ -1,0 +1,22 @@
+{
+  "resourceType": "ValueSet",
+  "status": "draft",
+  "name": "MedicationRoute",
+  "id": "jp-ePrescription-ValueSet15",
+  "title": "投与経路",
+  "description": "投与経路（２桁）",
+  "version": "0.5.0",
+  "url": "https://healthdataworks.net/JP-ePrescription/ValueSet-MedicationRoute.html",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2021-06-04T05:20:41.050+00:00",
+    "source": "#EwUhNhovaBVW4ud0"
+  },
+  "compose": {
+    "include": [
+      {
+        "system": "urn:oid:1.2.392.200250.2.2.20.40"
+      }
+    ]
+  }
+}

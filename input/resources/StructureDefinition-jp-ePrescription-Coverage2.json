@@ -1,0 +1,283 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "jp-ePrescription-Coverage2",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2021-06-04T04:36:13.677+00:00",
+    "source": "#9Nbo2c45mnnsxtkf"
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
+      "valueString": "Financial.Support"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category",
+      "valueCode": "patient"
+    }
+  ],
+  "url": "https://healthdataworks.net/JP-ePrescription/StructureDefinition/Coverage2",
+  "version": "0.5.0",
+  "name": "Coverage2",
+  "title": "Coverageリソース　公費情報",
+  "status": "active",
+  "description": "公費医療をうける場合のみ必要。複数の公費の場合には、その数だけCoverage リソースを繰り返す。公費医療でない場合には記述は不要。",
+  "fhirVersion": "4.0.1",
+  "mapping": [
+    {
+      "identity": "workflow",
+      "uri": "http://hl7.org/fhir/workflow",
+      "name": "Workflow Pattern"
+    },
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/fivews",
+      "name": "FiveWs Pattern Mapping"
+    },
+    {
+      "identity": "cdanetv4",
+      "uri": "http://www.cda-adc.ca/en/services/cdanet/",
+      "name": "Canadian Dental Association eclaims standard"
+    },
+    {
+      "identity": "v2",
+      "uri": "http://hl7.org/v2",
+      "name": "HL7 v2 Mapping"
+    },
+    {
+      "identity": "cpha3pharm",
+      "uri": "http://www.pharmacists.ca/",
+      "name": "Canadian Pharmacy Associaiton eclaims standard"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "Coverage",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Coverage",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Coverage",
+        "path": "Coverage",
+        "short": "Coverage リソースであることを示す"
+      },
+      {
+        "id": "Coverage.text",
+        "path": "Coverage.text",
+        "short": "本リソースをテキストで表現したものを入れてもよい。",
+        "mustSupport": true
+      },
+      {
+        "id": "Coverage.text.status",
+        "path": "Coverage.text.status",
+        "short": "テキスト内容の全てがリソースのコンテンツから生成されたことを示す。",
+        "fixedCode": "generated",
+        "mustSupport": true
+      },
+      {
+        "id": "Coverage.text.div",
+        "path": "Coverage.text.div",
+        "example": [
+          {
+            "label": "Example for xhtml",
+            "valueString": "<div\n\r\n                        xmlns=\"http://www.w3.org/1999/xhtml\">xxx</div>"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Coverage.status",
+        "path": "Coverage.status",
+        "short": "処方箋発行時に真に有効な公費かどうかは意味しない。",
+        "fixedCode": "active",
+        "mustSupport": true
+      },
+      {
+        "id": "Coverage.type",
+        "path": "Coverage.type",
+        "short": "保険種別コード。",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Coverage.type.coding",
+        "path": "Coverage.type.coding",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Coverage.type.coding.system",
+        "path": "Coverage.type.coding.system",
+        "short": "保険種別コードのコード体系を識別するURI。",
+        "min": 1,
+        "fixedUri": "urn:oid:1.2.392.100495.20.2.61",
+        "mustSupport": true
+      },
+      {
+        "id": "Coverage.type.coding.code",
+        "path": "Coverage.type.coding.code",
+        "short": "「8：公費」固定。",
+        "min": 1,
+        "fixedCode": "8",
+        "mustSupport": true
+      },
+      {
+        "id": "Coverage.subscriberId",
+        "path": "Coverage.subscriberId",
+        "short": "公費受給者番号。",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "12345678"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Coverage.beneficiary",
+        "path": "Coverage.beneficiary",
+        "short": "この公費で給付される患者情報（Patientリソース）へのリテラル参照。",
+        "mustSupport": true
+      },
+      {
+        "id": "Coverage.beneficiary.reference",
+        "path": "Coverage.beneficiary.reference",
+        "short": "PatientリソースのfullUrl要素に指定されるUUID を指定。",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "urn:uuid:11f0a9a6-a91d-3aef-fc4e-069995b89c4f"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Coverage.period",
+        "path": "Coverage.period",
+        "short": "公費受給者証の有効期間。公費受給者証に明示的に記載がある場合、かつ、医療機関がその情報を把握している場合のみ記録する。",
+        "mustSupport": true
+      },
+      {
+        "id": "Coverage.period.start",
+        "path": "Coverage.period.start",
+        "short": "公費受給者証の有効期間の開始日。資格取得日。ISO8601 に準拠してyyyy-mm-dd 形式で指定する。",
+        "example": [
+          {
+            "label": "Example for dateTime",
+            "valueDateTime": "2021-04-01T00:00:00+09:00"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Coverage.period.end",
+        "path": "Coverage.period.end",
+        "short": "公費受給者証の有効期間の終了日。資格喪失日。ISO8601 に準拠してyyyy-mm-dd 形式で指定する。",
+        "example": [
+          {
+            "label": "Example for dateTime",
+            "valueDateTime": "2021-04-30T00:00:00+09:00"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Coverage.payor",
+        "path": "Coverage.payor",
+        "short": "公費負担者を表すOrganization リソースへの参照。",
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Coverage.payor.reference",
+        "path": "Coverage.payor.reference",
+        "short": "Organization リソースのfullUrl要素に指定されるUUID を指定。",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "urn:uuid:7c9f9f7f-e546-0ac2-6828-a9e0b24e5750"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Coverage.order",
+        "path": "Coverage.order",
+        "short": "複数の公費負担情報がある場合の適用順序番号（１，２，３・・・）に相当し、第一公費、第二公費、第三公費、特殊 公費の区分を表す。",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Coverage.costToBeneficiary",
+        "path": "Coverage.costToBeneficiary",
+        "short": "公費の自己負担率。記録が可能な場合にのみ記録する。",
+        "mustSupport": true
+      },
+      {
+        "id": "Coverage.costToBeneficiary.type",
+        "path": "Coverage.costToBeneficiary.type",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Coverage.costToBeneficiary.type.coding",
+        "path": "Coverage.costToBeneficiary.type.coding",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Coverage.costToBeneficiary.type.coding.system",
+        "path": "Coverage.costToBeneficiary.type.coding.system",
+        "short": "公費における自己負担の種別を識別するコードのコード体系を識別するURI。",
+        "min": 1,
+        "fixedUri": "http://terminology./CodeSystem/coveragecopay-type",
+        "mustSupport": true
+      },
+      {
+        "id": "Coverage.costToBeneficiary.type.coding.code",
+        "path": "Coverage.costToBeneficiary.type.coding.code",
+        "short": "自己負担率を表すコード。",
+        "min": 1,
+        "fixedCode": "copaypct",
+        "mustSupport": true
+      },
+      {
+        "id": "Coverage.costToBeneficiary.type.coding.display",
+        "path": "Coverage.costToBeneficiary.type.coding.display",
+        "short": "コードの表示名。",
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "負担率"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Coverage.costToBeneficiary.value[x]",
+        "path": "Coverage.costToBeneficiary.value[x]",
+        "short": "自己負担割合",
+        "example": [
+          {
+            "label": "Example for Quantity",
+            "valueQuantity": {
+              "unit": "%"
+            }
+          }
+        ],
+        "mustSupport": true
+      }
+    ]
+  }
+}

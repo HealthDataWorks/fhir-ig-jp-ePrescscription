@@ -1,0 +1,22 @@
+{
+  "resourceType": "ValueSet",
+  "status": "draft",
+  "name": "MedicalWork",
+  "id": "jp-ePrescription-ValueSet4",
+  "title": "医療従事者資格",
+  "description": "⿇薬施⽤者免許番号を指定する場合に使⽤する医療従事者の資格",
+  "version": "ValueSet4",
+  "url": "https://healthdataworks.net/JP-ePrescription/ValueSet-MedicalWorker.html",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2021-06-04T05:00:15.938+00:00",
+    "source": "#RKRUh1wljjHD0Ewq"
+  },
+  "compose": {
+    "include": [
+      {
+        "system": "http://jpfhir.jp/fhir/ePrescription/CodeSystem/Certificate"
+      }
+    ]
+  }
+}

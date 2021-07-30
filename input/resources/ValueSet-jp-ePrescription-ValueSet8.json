@@ -1,0 +1,22 @@
+{
+  "resourceType": "ValueSet",
+  "status": "draft",
+  "name": "HOTCode",
+  "id": "jp-ePrescription-ValueSet8",
+  "title": "HOT コード（9桁）",
+  "description": "医薬品コード（HOT9）",
+  "version": "0.5.0",
+  "url": "https://healthdataworks.net/JP-ePrescription/ValueSet-HOTCode.html",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2021-06-04T04:59:47.162+00:00",
+    "source": "#wmcSmHHOYibXLRlf"
+  },
+  "compose": {
+    "include": [
+      {
+        "system": "urn:oid:1.2.392.200119.4.403.1"
+      }
+    ]
+  }
+}

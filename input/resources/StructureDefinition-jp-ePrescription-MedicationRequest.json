@@ -1,0 +1,776 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "jp-ePrescription-MedicationRequest",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2021-06-04T04:37:38.868+00:00",
+    "source": "#EBkwIoCSVvmT0NjU"
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
+      "valueString": "Clinical.Medications"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category",
+      "valueCode": "patient"
+    }
+  ],
+  "url": "https://healthdataworks.net/JP-ePrescription/StructureDefinition/MedicationRequest",
+  "version": "0.5.0",
+  "name": "MedicationRequest",
+  "title": "MedicationRequestリソース　処方依頼情報",
+  "status": "active",
+  "description": "１医薬品ごとに処方指示がひとつのMedicationRequest リソースにより記述\nされ、医薬品の数だけMedicationRequest リソースが繰り返される。",
+  "fhirVersion": "4.0.1",
+  "mapping": [
+    {
+      "identity": "workflow",
+      "uri": "http://hl7.org/fhir/workflow",
+      "name": "Workflow Pattern"
+    },
+    {
+      "identity": "script10.6",
+      "uri": "http://ncpdp.org/SCRIPT10_6",
+      "name": "Mapping to NCPDP SCRIPT 10.6"
+    },
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/fivews",
+      "name": "FiveWs Pattern Mapping"
+    },
+    {
+      "identity": "v2",
+      "uri": "http://hl7.org/v2",
+      "name": "HL7 v2 Mapping"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "MedicationRequest",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/MedicationRequest",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "MedicationRequest",
+        "path": "MedicationRequest",
+        "short": "MedicationRequestリソースであることを示す"
+      },
+      {
+        "id": "MedicationRequest.text",
+        "path": "MedicationRequest.text",
+        "short": "本リソースをテキストで表現したものを入れてもよい。",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.text.status",
+        "path": "MedicationRequest.text.status",
+        "short": "テキスト内容の全てがリソースのコンテンツから生成されたことを示す。",
+        "fixedCode": "generated",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.text.div",
+        "path": "MedicationRequest.text.div",
+        "example": [
+          {
+            "label": "Example for xhtml",
+            "valueString": "<div\r\n                        xmlns=\"http://www.w3.org/1999/xhtml\">xxx</div>"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.extension",
+        "path": "MedicationRequest.extension",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "extension.url"
+            }
+          ],
+          "rules": "open"
+        },
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.extension:1",
+        "path": "MedicationRequest.extension",
+        "sliceName": "1",
+        "short": "投与開始日を明示したい場合に使用する拡張「PeriodOfUse」。詳細は「4.9.3.1内服薬」の「４)投与開始日」を参照。",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.extension:1.url",
+        "path": "MedicationRequest.extension.url",
+        "short": "拡張を識別するURL。",
+        "fixedUri": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.extension:1.value[x]",
+        "path": "MedicationRequest.extension.value[x]",
+        "short": "投与期間を表す。処方期間の開始日。",
+        "type": [
+          {
+            "code": "Period"
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest.extension:2",
+        "path": "MedicationRequest.extension",
+        "sliceName": "2",
+        "short": "隔日投与など、服用開始日から終了日までの日数と実投与日数が異なる場合に、実投与日数を明示したい場合に使用する拡張「UsageDuration」。詳細は「4.9.3.1内服薬」の「３)投与日数」を参照。",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.extension:2.url",
+        "path": "MedicationRequest.extension.url",
+        "short": "拡張を識別するためのURL。",
+        "fixedUri": "2",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.extension:2.value[x]",
+        "path": "MedicationRequest.extension.value[x]",
+        "short": "実投与日数。単位「日」。単位コード UCUMを識別するURI。単位コードUCUMにおける実投与日数の単位を表すコード。",
+        "min": 1,
+        "type": [
+          {
+            "code": "Duration"
+          }
+        ],
+        "example": [
+          {
+            "label": "Example for Duration",
+            "valueDuration": {
+              "unit": "日"
+            }
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.extension:3",
+        "path": "MedicationRequest.extension",
+        "sliceName": "3",
+        "short": "後発医薬品変更不可に対する電子署名を表す拡張「Signature」。",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.extension:3.extension",
+        "path": "MedicationRequest.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.extension:3.url",
+        "path": "MedicationRequest.extension.url",
+        "short": "拡張を識別するURL。",
+        "fixedUri": "3",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.extension:3.value[x]",
+        "path": "MedicationRequest.extension.value[x]",
+        "short": "電子署名情報",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.identifier",
+        "path": "MedicationRequest.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "identifier.system"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 2,
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.identifier:1",
+        "path": "MedicationRequest.identifier",
+        "sliceName": "1",
+        "short": "剤グループ（Rp）番号。詳細は「4.9.2 剤グループ構造とその番号」参照。",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.identifier:1.system",
+        "path": "MedicationRequest.identifier.system",
+        "short": "剤グループ番号の名前空間を識別するURI。",
+        "min": 1,
+        "fixedUri": "urn:oid:1.2.392.100495.20.3.81",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.identifier:1.value",
+        "path": "MedicationRequest.identifier.value",
+        "short": "剤グループ番号",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "1"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.identifier:2",
+        "path": "MedicationRequest.identifier",
+        "sliceName": "2",
+        "short": "剤グループ内連番。詳細は「4.9.2剤グループ構造とその番号」参照。",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.identifier:2.system",
+        "path": "MedicationRequest.identifier.system",
+        "short": "剤グループ内番号の名前空間を識別するURI。",
+        "min": 1,
+        "fixedUri": "urn:oid:1.2.392.100495.20.3.82",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.identifier:2.value",
+        "path": "MedicationRequest.identifier.value",
+        "short": "剤グループ内連番。",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "1"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.status",
+        "path": "MedicationRequest.status",
+        "fixedCode": "active",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.intent",
+        "path": "MedicationRequest.intent",
+        "fixedCode": "order",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.medication[x]",
+        "path": "MedicationRequest.medication[x]",
+        "short": "医薬品コードと医薬品名称。coding要素を繰り返すことでHOT9 やYJコードなど複数のコード体系で医薬品コードを並記することが可能。利用可能なコード体系は表 20 を参照。",
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "example": [
+          {
+            "label": "Example for CodeableConcept",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "103831601",
+                  "system": "urn:oid:1.2.392.200119.4.403.1",
+                  "display": "カルボシステイン錠２５０ｍｇ"
+                }
+              ]
+            }
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.subject",
+        "path": "MedicationRequest.subject",
+        "short": "患者を表すPatientリソースへの参照。",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.subject.reference",
+        "path": "MedicationRequest.subject.reference",
+        "short": "PatientリソースのfullUrl要素に指定されるUUIDを指定。",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "urn:uuid:1af0a9a6-a91d-3aef-fc4e-069995b89c4f"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.authoredOn",
+        "path": "MedicationRequest.authoredOn",
+        "short": "処方指示が最初に作成された日時。秒の精度まで記録する。タイムゾーンも付与しなければならない。",
+        "example": [
+          {
+            "label": "Example for dateTime",
+            "valueDateTime": "2021-04-01T00:00:00+09:00"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.note",
+        "path": "MedicationRequest.note",
+        "short": "薬剤単位の備考。詳細は「4.9.8.1薬剤単位の指示」",
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.note.text",
+        "path": "MedicationRequest.note.text",
+        "short": "備考文字字列。",
+        "example": [
+          {
+            "label": "Example for markdown",
+            "valueMarkdown": "4月1日から4日間服用。2週間休薬後、4月19日から4日間服用。患者に書面にて説明済み。"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction",
+        "path": "MedicationRequest.dosageInstruction",
+        "short": "用法や投与量を含む処方指示。詳細は表 13に記載。",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.text",
+        "path": "MedicationRequest.dosageInstruction.text",
+        "short": "dosageInstructionが表す処方指示の文字列表現。",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.additionalInstruction",
+        "path": "MedicationRequest.dosageInstruction.additionalInstruction",
+        "short": "補足的な処方指示。本文書では、不均等投与を1 日用法として記載する場合に、補足用法コードを記録するために使用する。詳細は「4.9.5均等分割用法と不均等用法」参照。",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.additionalInstruction.coding",
+        "path": "MedicationRequest.dosageInstruction.additionalInstruction.coding",
+        "short": "JAMI 補足用法８桁コードを識別するURI。JAMI 補足用法コード指定する。コードの表示名。",
+        "min": 1,
+        "max": "1",
+        "fixedCoding": {
+          "system": "urn:oid:1.2.392.200250.2.2.20.22"
+        },
+        "example": [
+          {
+            "label": "Example for Coding",
+            "valueCoding": {
+              "code": "V14NNNNN",
+              "display": "不均等・１回目・４錠"
+            }
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.timing",
+        "path": "MedicationRequest.dosageInstruction.timing",
+        "short": "服用タイミングを記録する。",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.timing.event",
+        "path": "MedicationRequest.dosageInstruction.timing.event",
+        "short": "服用タイミングを具体的な日時で指定する場合に使用する。",
+        "example": [
+          {
+            "label": "Example for dateTime",
+            "valueDateTime": "2021-04-10T09:00:00+09:00"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.timing.repeat",
+        "path": "MedicationRequest.dosageInstruction.timing.repeat",
+        "type": [
+          {
+            "code": "Duration"
+          }
+        ],
+        "example": [
+          {
+            "label": "Example for Duration",
+            "valueDuration": {
+              "unit": "日"
+            }
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.timing.code",
+        "path": "MedicationRequest.dosageInstruction.timing.code",
+        "short": "用法。JAMI標準用法コードを指定する。詳細は「4.9.3.2 内服薬 １)用法」、及び、「4.9.3.3 外用薬 １)用法」を参照。",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.timing.code.coding",
+        "path": "MedicationRequest.dosageInstruction.timing.code.coding",
+        "min": 1,
+        "max": "1",
+        "example": [
+          {
+            "label": "Example for Coding",
+            "valueCoding": {
+              "code": "1013044400000000",
+              "system": "urn:oid:1.2.392.200250.2.2.20.20",
+              "display": "内服・経口・１⽇３回朝昼夕食後"
+            }
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.asNeeded[x]",
+        "path": "MedicationRequest.dosageInstruction.asNeeded[x]",
+        "short": "頓用型の用法を指定する場合に”true”を指定する。詳細は「4.9.4.2 頓用」を参照。",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.site",
+        "path": "MedicationRequest.dosageInstruction.site",
+        "short": "外用薬で部位を指定する場合に使用する。詳細は「4.9.3.3 外用薬 ４)部位」参照。",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.site.coding",
+        "path": "MedicationRequest.dosageInstruction.site.coding",
+        "min": 1,
+        "max": "1",
+        "example": [
+          {
+            "label": "Example for Coding",
+            "valueCoding": {
+              "code": "950",
+              "system": "urn:oid:1.2.392.200250.2.2.20.32",
+              "display": "膝"
+            }
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.site.text",
+        "path": "MedicationRequest.dosageInstruction.site.text",
+        "short": "部位のテキスト表現。",
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "膝"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.route",
+        "path": "MedicationRequest.dosageInstruction.route",
+        "short": "投与経路",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.route.coding",
+        "path": "MedicationRequest.dosageInstruction.route.coding",
+        "min": 1,
+        "max": "1",
+        "example": [
+          {
+            "label": "Example for Coding",
+            "valueCoding": {
+              "code": "10",
+              "system": "urn:oid:1.2.392.200250.2.2.20.40",
+              "display": "経口"
+            }
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.route.text",
+        "path": "MedicationRequest.dosageInstruction.route.text",
+        "short": "投与経路の文字列表現。コードで指定できない場合、本要素で文字列として指定してもよい。",
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "経口"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.method",
+        "path": "MedicationRequest.dosageInstruction.method",
+        "short": "投与方法",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.method.coding",
+        "path": "MedicationRequest.dosageInstruction.method.coding",
+        "min": 1,
+        "max": "1",
+        "example": [
+          {
+            "label": "Example for Coding",
+            "valueCoding": {
+              "code": "1",
+              "system": "urn:oid:1.2.392.200250.2.2.20.30",
+              "display": "内服"
+            }
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.method.text",
+        "path": "MedicationRequest.dosageInstruction.method.text",
+        "short": "投与方法のテキスト表現。コードで指定できない場合、本要素で文字列列として指定してもよい。",
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "内服"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dosageInstruction.doseAndRate",
+        "path": "MedicationRequest.dosageInstruction.doseAndRate",
+        "short": "投与量を記録する。記録方法の詳細は、「4.9.3.2 内服薬 ２)用量」参照。",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest",
+        "path": "MedicationRequest.dispenseRequest",
+        "short": "調剤情報",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.extension",
+        "path": "MedicationRequest.dispenseRequest.extension",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "extension.url"
+            }
+          ],
+          "rules": "open"
+        },
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.extension:1",
+        "path": "MedicationRequest.dispenseRequest.extension",
+        "sliceName": "1",
+        "short": "調剤指示を表す拡張「InstructionForDispense」。",
+        "min": 0,
+        "max": "*",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.extension:1.url",
+        "path": "MedicationRequest.dispenseRequest.extension.url",
+        "fixedUri": "1"
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.extension:2",
+        "path": "MedicationRequest.dispenseRequest.extension",
+        "sliceName": "2",
+        "short": "頓用回数を表現する拡張「ExpectedRepeatCount」。",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.extension:2.extension",
+        "path": "MedicationRequest.dispenseRequest.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.extension:2.url",
+        "path": "MedicationRequest.dispenseRequest.extension.url",
+        "short": "拡張を識別するURL。",
+        "fixedUri": "2",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.extension:2.value[x]",
+        "path": "MedicationRequest.dispenseRequest.extension.value[x]",
+        "short": "頓用回数。",
+        "min": 1,
+        "type": [
+          {
+            "code": "integer"
+          }
+        ],
+        "example": [
+          {
+            "label": "Example for integer",
+            "valueInteger": 5
+          }
+        ]
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.quantity",
+        "path": "MedicationRequest.dispenseRequest.quantity",
+        "short": "調剤量",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.quantity.value",
+        "path": "MedicationRequest.dispenseRequest.quantity.value",
+        "short": "調剤量。",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.quantity.unit",
+        "path": "MedicationRequest.dispenseRequest.quantity.unit",
+        "short": "単位文字列。",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "錠"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.quantity.system",
+        "path": "MedicationRequest.dispenseRequest.quantity.system",
+        "short": "医薬品単位略号を識別するURL。",
+        "min": 1,
+        "fixedUri": "urn:oid:1.2.392.200119.4.403.1",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.quantity.code",
+        "path": "MedicationRequest.dispenseRequest.quantity.code",
+        "short": "医薬品単位略号。",
+        "min": 1,
+        "fixedCode": "TAB",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.expectedSupplyDuration",
+        "path": "MedicationRequest.dispenseRequest.expectedSupplyDuration",
+        "short": "調剤日数",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.expectedSupplyDuration.value",
+        "path": "MedicationRequest.dispenseRequest.expectedSupplyDuration.value",
+        "short": "調剤日数。",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.expectedSupplyDuration.unit",
+        "path": "MedicationRequest.dispenseRequest.expectedSupplyDuration.unit",
+        "short": "調剤日数の単位。",
+        "min": 1,
+        "fixedString": "日",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.expectedSupplyDuration.system",
+        "path": "MedicationRequest.dispenseRequest.expectedSupplyDuration.system",
+        "short": "UCUM単位コードを識別するURI。",
+        "min": 1,
+        "fixedUri": "http://unitsofmeasure.org",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.dispenseRequest.expectedSupplyDuration.code",
+        "path": "MedicationRequest.dispenseRequest.expectedSupplyDuration.code",
+        "short": "「日」を表すUCUM単位コード。",
+        "min": 1,
+        "fixedCode": "d",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.substitution",
+        "path": "MedicationRequest.substitution",
+        "short": "後発医薬品への変更可否情報。詳細は「5.1後発品変更可否」参照。",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.substitution.allowed[x]",
+        "path": "MedicationRequest.substitution.allowed[x]",
+        "short": "後発品変更不可コード。",
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "example": [
+          {
+            "label": "Example for CodeableConcept",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "1",
+                  "system": "urn:oid:1.2.392.100495.20.2.41",
+                  "display": "変更不可"
+                }
+              ]
+            }
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.substitution.reason",
+        "path": "MedicationRequest.substitution.reason",
+        "short": "後発品変更不可の理由。",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationRequest.substitution.reason.text",
+        "path": "MedicationRequest.substitution.reason.text",
+        "short": "理由を表す文字列。",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "患者からの強い要望により"
+          }
+        ],
+        "mustSupport": true
+      }
+    ]
+  }
+}

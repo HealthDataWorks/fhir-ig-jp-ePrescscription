@@ -1,0 +1,22 @@
+{
+  "resourceType": "ValueSet",
+  "status": "draft",
+  "name": "SectionClassfication",
+  "id": "jp-ePrescription-ValueSet3",
+  "title": "セクション区分コード",
+  "description": "セクション区分コード",
+  "version": "0.5.0",
+  "url": "https://healthdataworks.net/JP-ePrescription/ValueSet-SectionClassfication.thml",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2021-06-04T05:00:45.850+00:00",
+    "source": "#HVKl7dLFJQ6mRCQn"
+  },
+  "compose": {
+    "include": [
+      {
+        "system": "http://jpfhir.jp/fhir/ePrescription/CodeSystem/PrescriptionSection"
+      }
+    ]
+  }
+}

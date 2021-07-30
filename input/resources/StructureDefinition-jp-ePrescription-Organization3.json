@@ -1,0 +1,200 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "jp-ePrescription-Organization3",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2021-06-04T04:38:28.982+00:00",
+    "source": "#xckmfiYoaRFMr3Al"
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
+      "valueString": "Base.Entities"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category",
+      "valueCode": "business"
+    }
+  ],
+  "url": "https://healthdataworks.net/JP-ePrescription/StructureDefinition/Organization3",
+  "version": "0.5.0",
+  "name": "Organization3",
+  "title": "Organizationリソース　処方診療科情報",
+  "status": "active",
+  "description": "処方診療科情報は、以下のOrganization リソースにより記述し、partOf 要素\nから処方医療機関情報を表すOrganization リソースを参照する。処方診療科\n情報を出力しない場合には不要である。",
+  "fhirVersion": "4.0.1",
+  "mapping": [
+    {
+      "identity": "v2",
+      "uri": "http://hl7.org/v2",
+      "name": "HL7 v2 Mapping"
+    },
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "servd",
+      "uri": "http://www.omg.org/spec/ServD/1.0/",
+      "name": "ServD"
+    },
+    {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/fivews",
+      "name": "FiveWs Pattern Mapping"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "Organization",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Organization",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Organization",
+        "path": "Organization",
+        "short": "Organization リソースであることを示す"
+      },
+      {
+        "id": "Organization.text",
+        "path": "Organization.text",
+        "short": "本リソースをテキストで表現したものを入れてもよい。",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.text.status",
+        "path": "Organization.text.status",
+        "short": "テキスト内容の全てがリソースのコンテンツから生成されたことを示す。",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.text.div",
+        "path": "Organization.text.div",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.type",
+        "path": "Organization.type",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "type.coding.system"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.type:1",
+        "path": "Organization.type",
+        "sliceName": "1",
+        "short": "施設種別",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.type:1.coding",
+        "path": "Organization.type.coding",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.type:1.coding.system",
+        "path": "Organization.type.coding.system",
+        "short": "施設種別を表すコード体系を識別するURI。",
+        "min": 1,
+        "fixedUri": "http://terminology.hl7.org/CodeSystem/organization-type",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.type:1.coding.code",
+        "path": "Organization.type.coding.code",
+        "short": "バリューセットOrganizationType(http://hl7.org/fhir/ValueSet/organization-type) から、診療科を表すコードを指定。",
+        "min": 1,
+        "fixedCode": "dept",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.type:2",
+        "path": "Organization.type",
+        "sliceName": "2",
+        "short": "診療科コード。コードで記述できる場合に記録してもよい。利用可能なコード体系の一例として、電子処方箋CDA記述仕様第1 版の別表10 診療科コード（urn:oid:1.2.392.100495.20.2.51）の例を示す。",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.type:2.coding",
+        "path": "Organization.type.coding",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.type:2.coding.system",
+        "path": "Organization.type.coding.system",
+        "short": "診療科コードのコード体系を識別するURI。",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for uri",
+            "valueUri": "urn:oid:1.2.392.100495.20.2.51"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.type:2.coding.code",
+        "path": "Organization.type.coding.code",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for code",
+            "valueCode": "01"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.name",
+        "path": "Organization.name",
+        "short": "診療科名称。",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "内科"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.partOf",
+        "path": "Organization.partOf",
+        "short": "処方医療機関を表すOrganization リソースへの参照。",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.partOf.reference",
+        "path": "Organization.partOf.reference",
+        "short": "処方医療機関を表すOrganization リソースのfullUrl要素に指定されるUUID を指定。",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "urn:uuid:179f9f7f-e546-04c2-6888-a9e0b24e5720"
+          }
+        ],
+        "mustSupport": true
+      }
+    ]
+  }
+}

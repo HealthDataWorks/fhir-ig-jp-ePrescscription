@@ -1,0 +1,71 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "jp-ePrescription-MedicationStartDate",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2021-06-04T04:18:09.127+00:00",
+    "source": "#iaIlS3Q3djQhoZly"
+  },
+  "url": "http://jpfhir.jp/fhir/ePrescription/StructureDefinition/PeriodOfUse",
+  "version": "0.5.0",
+  "name": "MedicationStartDate",
+  "title": "投与開始日",
+  "status": "active",
+  "description": "投与開始⽇を格納する拡張",
+  "fhirVersion": "4.0.1",
+  "mapping": [
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "context": [
+    {
+      "type": "fhirpath",
+      "expression": "MedicationRequest"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension.extension",
+        "path": "Extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "short": "拡張を識別するURL。固定値。",
+        "fixedUri": "http://jpfhir.jp/fhir/ePrescription/StructureDefinition/PeriodOfUse",
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "short": "投与期間を表す",
+        "min": 1,
+        "type": [
+          {
+            "code": "Period"
+          }
+        ],
+        "example": [
+          {
+            "label": "Example for Period",
+            "valuePeriod": {
+              "start": "2021-04-01T00:00:00+09:00",
+              "end": "2021-04-30T00:00:00+09:00"
+            }
+          }
+        ],
+        "mustSupport": true
+      }
+    ]
+  }
+}

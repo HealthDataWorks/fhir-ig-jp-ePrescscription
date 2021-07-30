@@ -1,0 +1,121 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "jp-ePrescription-Encounter",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2021-06-04T04:36:33.634+00:00",
+    "source": "#66x3Lq5MyB6ulVgm"
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
+      "valueString": "Base.Management"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category",
+      "valueCode": "patient"
+    }
+  ],
+  "url": "https://healthdataworks.net/JP-ePrescription/StructureDefinition/Encounter",
+  "version": "0.5.0",
+  "name": "Encounter",
+  "title": "Encounterリソース　受信状況情報",
+  "status": "active",
+  "description": "処方箋が出された受診時状況（外来、入院、退院時など）情報を、Encounterリソースにより記録する。",
+  "fhirVersion": "4.0.1",
+  "mapping": [
+    {
+      "identity": "workflow",
+      "uri": "http://hl7.org/fhir/workflow",
+      "name": "Workflow Pattern"
+    },
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/fivews",
+      "name": "FiveWs Pattern Mapping"
+    },
+    {
+      "identity": "v2",
+      "uri": "http://hl7.org/v2",
+      "name": "HL7 v2 Mapping"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "Encounter",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Encounter",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Encounter",
+        "path": "Encounter",
+        "short": "Encounterリソースであることを⽰す 2"
+      },
+      {
+        "id": "Encounter.text",
+        "path": "Encounter.text",
+        "short": "本リソースをテキストで表現したものを入れてもよい。",
+        "mustSupport": true
+      },
+      {
+        "id": "Encounter.text.status",
+        "path": "Encounter.text.status",
+        "short": "テキスト内容の全てがリソースのコンテンツから生成されたことを示す。",
+        "fixedCode": "generated",
+        "mustSupport": true
+      },
+      {
+        "id": "Encounter.text.div",
+        "path": "Encounter.text.div",
+        "example": [
+          {
+            "label": "Example for xhtml",
+            "valueString": "<div\r\n                        xmlns=\"http://www.w3.org/1999/xhtml\">xxx</div>"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Encounter.status",
+        "path": "Encounter.status",
+        "short": "バリューセットEncounterStatus(http://hl7.org/fhir/ValueSet/encouner-status)より”finished\"を指定する。",
+        "fixedCode": "finished",
+        "mustSupport": true
+      },
+      {
+        "id": "Encounter.class",
+        "path": "Encounter.class",
+        "short": "受診情報の分類",
+        "mustSupport": true
+      },
+      {
+        "id": "Encounter.class.system",
+        "path": "Encounter.class.system",
+        "short": "コード体系v3.ActEncounterCode を識別するURI。",
+        "min": 1,
+        "fixedUri": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+        "mustSupport": true
+      },
+      {
+        "id": "Encounter.class.code",
+        "path": "Encounter.class.code",
+        "short": "「AMB:外来(ambulatory)」固定。本文書は外来診療における処方箋を対象としているため、外来に限定される。救急の場合も外来と指定する。入院の院内処方箋での仕様は別途作成する。",
+        "min": 1,
+        "fixedCode": "AMB",
+        "mustSupport": true
+      },
+      {
+        "id": "Encounter.class.display",
+        "path": "Encounter.class.display",
+        "fixedString": "外来",
+        "mustSupport": true
+      }
+    ]
+  }
+}

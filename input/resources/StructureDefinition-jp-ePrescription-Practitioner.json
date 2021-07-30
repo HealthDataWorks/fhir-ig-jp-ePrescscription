@@ -1,0 +1,316 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "jp-ePrescription-Practitioner",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2021-06-04T04:39:37.758+00:00",
+    "source": "#2QlgfkHAQ1avePsF"
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
+      "valueString": "Base.Individuals"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category",
+      "valueCode": "individual"
+    }
+  ],
+  "url": "https://healthdataworks.net/JP-ePrescription/StructureDefinition/Practitioner",
+  "version": "0.5.0",
+  "name": "Practitioner",
+  "title": "Practitionerリソース　処方医情報",
+  "status": "active",
+  "description": "処方医はPractitioner リソースとして記述し、PractitionerRole リソース（処\n方医役割情報）から参照する。麻薬処方の場合のみ、qualification 要素に\n、麻薬施用者免許番号を記録する。",
+  "fhirVersion": "4.0.1",
+  "mapping": [
+    {
+      "identity": "v2",
+      "uri": "http://hl7.org/v2",
+      "name": "HL7 v2 Mapping"
+    },
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "servd",
+      "uri": "http://www.omg.org/spec/ServD/1.0/",
+      "name": "ServD"
+    },
+    {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/fivews",
+      "name": "FiveWs Pattern Mapping"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "Practitioner",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Practitioner",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Practitioner",
+        "path": "Practitioner",
+        "short": "Practitionerリソースであることを示す"
+      },
+      {
+        "id": "Practitioner.text",
+        "path": "Practitioner.text",
+        "short": "本リソースをテキストで表現したものを入れてもよい。",
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.text.status",
+        "path": "Practitioner.text.status",
+        "short": "テキスト内容の全てがリソースのコンテンツから生成されたことを示す。",
+        "fixedCode": "generated",
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.text.div",
+        "path": "Practitioner.text.div",
+        "example": [
+          {
+            "label": "Example for xhtml",
+            "valueString": "<div\r\n                        xmlns=\"http://www.w3.org/1999/xhtml\">xxx</div>"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.name",
+        "path": "Practitioner.name",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "extension.valueCode"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.name:1",
+        "path": "Practitioner.name",
+        "sliceName": "1",
+        "short": "処方医氏名",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.name:1.extension",
+        "path": "Practitioner.name.extension",
+        "short": "氏名が漢字表記かカナ表記かを区別するための拡張「iso21090-EN-representation」。",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.name:1.extension.url",
+        "path": "Practitioner.name.extension.url",
+        "short": "拡張を識別するURL。",
+        "fixedUri": "http://hl7.org/fhir/StructureDefinition/iso21090-EN-representation",
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.name:1.extension.value[x]",
+        "path": "Practitioner.name.extension.value[x]",
+        "short": "漢字表記であることを表す固定値。",
+        "min": 1,
+        "type": [
+          {
+            "code": "code"
+          }
+        ],
+        "fixedCode": "IDE",
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.name:1.text",
+        "path": "Practitioner.name.text",
+        "short": "氏名全体の文字列をtext要素に入れる。氏名の姓と名が分離できない場合は本要素のみを使用する。",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "神奈川花子"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.name:1.family",
+        "path": "Practitioner.name.family",
+        "short": "氏名の姓。",
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "神奈川"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.name:1.given",
+        "path": "Practitioner.name.given",
+        "short": "氏名の名。ミドルネームがある場合には、ミドルネーム、名の順で繰り返す。",
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "花子"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.name:2",
+        "path": "Practitioner.name",
+        "sliceName": "2",
+        "short": "よみ（カタカナ）",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.name:2.extension",
+        "path": "Practitioner.name.extension",
+        "short": "氏名が漢字表記かカナ表記かを区別するための拡張「iso21090-EN-representation」。",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.name:2.extension.extension",
+        "path": "Practitioner.name.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Practitioner.name:2.extension.url",
+        "path": "Practitioner.name.extension.url",
+        "short": "拡張を識別するURL。",
+        "fixedUri": "http://hl7.org/fhir/StructureDefinition/iso21090-EN-representation",
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.name:2.extension.value[x]",
+        "path": "Practitioner.name.extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "code"
+          }
+        ],
+        "fixedCode": "SYL",
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.name:2.text",
+        "path": "Practitioner.name.text",
+        "short": "カナ氏名全体の文字列をtext要素に入れる。氏名の姓と名が分離できない場合は本要素のみを使用する。カタカナはJIS X 0208 のカタカナ（全角カナ）のみとし、JIS X 0201 のカタカナ（半角カナ）は使?してはならない。",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "カナガワハナコ"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.name:2.family",
+        "path": "Practitioner.name.family",
+        "short": "カナ氏名の姓。",
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "カナガワ"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.name:2.given",
+        "path": "Practitioner.name.given",
+        "short": "カナ氏名の姓。",
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "カナガワ"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.qualification",
+        "path": "Practitioner.qualification",
+        "short": "麻薬試用者免許番号（麻薬処方のみ）",
+        "max": "1"
+      },
+      {
+        "id": "Practitioner.qualification.identifier",
+        "path": "Practitioner.qualification.identifier",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.qualification.identifier.system",
+        "path": "Practitioner.qualification.identifier.system",
+        "short": "麻薬施用者番号を識別する名前空間のURI。",
+        "min": 1,
+        "fixedUri": "urn:oid:1.2.392.100495.20.3.32.13",
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.qualification.identifier.value",
+        "path": "Practitioner.qualification.identifier.value",
+        "short": "麻薬施用者番号。",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "4-321"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.qualification.code",
+        "path": "Practitioner.qualification.code",
+        "short": "麻薬施用者を表すコード。",
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.qualification.code.coding",
+        "path": "Practitioner.qualification.code.coding",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.qualification.code.coding.system",
+        "path": "Practitioner.qualification.code.coding.system",
+        "short": "コード体系 Certificate を識別するURI。",
+        "min": 1,
+        "fixedUri": "http://jpfhir.jp/fhir/ePrescription/CodeSystem/Certificate",
+        "mustSupport": true
+      },
+      {
+        "id": "Practitioner.qualification.code.coding.code",
+        "path": "Practitioner.qualification.code.coding.code",
+        "short": "麻薬薬施用者を表すコード。",
+        "min": 1,
+        "fixedCode": "NarcoticsPractitioner",
+        "mustSupport": true
+      }
+    ]
+  }
+}

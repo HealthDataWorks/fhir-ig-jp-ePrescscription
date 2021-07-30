@@ -1,0 +1,22 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "not-present",
+  "name": "CodeSystem9",
+  "id": "jp-ePrescription-CodeSystem9",
+  "title": "⼀般処⽅名マスター",
+  "description": "urn:oid:1.2.392.100495.20.1.81",
+  "version": "0.5.0",
+  "url": "https://healthdataworks.net/JP-ePrescription/CodeSystem-CodeSystem9.html",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2021-06-04T05:25:07.983+00:00",
+    "source": "#8rLTZpXltjcxoh4I"
+  },
+  "identifier": [
+    {
+      "use": "official",
+      "system": "urn:oid:1.2.392.100495.20.1.81"
+    }
+  ]
+}

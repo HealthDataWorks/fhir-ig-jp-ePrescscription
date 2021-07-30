@@ -1,0 +1,317 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "jp-ePrescription-Organization4",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2021-06-04T04:38:50.270+00:00",
+    "source": "#rEIF0T1wH30KVNg0"
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
+      "valueString": "Base.Entities"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category",
+      "valueCode": "business"
+    }
+  ],
+  "url": "https://healthdataworks.net/JP-ePrescription/StructureDefinition/Organization4",
+  "version": "0.5.0",
+  "name": "Organization4",
+  "title": "Organizationリソース（分割処方箋における処方医療機関情報）",
+  "status": "active",
+  "description": "分割処方箋発行医療機関情報は、Organization リソースとして記録する。",
+  "fhirVersion": "4.0.1",
+  "mapping": [
+    {
+      "identity": "v2",
+      "uri": "http://hl7.org/v2",
+      "name": "HL7 v2 Mapping"
+    },
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "servd",
+      "uri": "http://www.omg.org/spec/ServD/1.0/",
+      "name": "ServD"
+    },
+    {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/fivews",
+      "name": "FiveWs Pattern Mapping"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "Organization",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Organization",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Organization",
+        "path": "Organization",
+        "short": "Organization リソースであることを示す"
+      },
+      {
+        "id": "Organization.text",
+        "path": "Organization.text",
+        "short": "本リソースをテキストで表現したものを入れてもよい。",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.text.status",
+        "path": "Organization.text.status",
+        "short": "テキスト内容の全てがリソースのコンテンツから生成されたことを示す。",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.text.div",
+        "path": "Organization.text.div",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.extension",
+        "path": "Organization.extension",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "extension.url"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 3,
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.extension:1",
+        "path": "Organization.extension",
+        "sliceName": "1",
+        "short": "都道府県番号２桁。Identifier 型の拡張「PrefectureNo」を使用。",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://jpfhir.jp/fhir/ePrescription/StructureDefinition/PrefectureNo"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.extension:2",
+        "path": "Organization.extension",
+        "sliceName": "2",
+        "short": "点数表コード１桁。Identifier 型の拡張「OrganizationCategory」を使用。",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://jpfhir.jp/fhir/ePrescription/StructureDefinition/OrganizationCategory"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.extension:3",
+        "path": "Organization.extension",
+        "sliceName": "3",
+        "short": "保険医療機関番号７桁。Identifier型の拡張「OrganizationNo」を使用。",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://jpfhir.jp/fhir/ePrescription/StructureDefinition/OrganizationNo"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier",
+        "path": "Organization.identifier",
+        "short": "保険医療機関番号10 桁。",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier.system",
+        "path": "Organization.identifier.system",
+        "short": "保険医療機関番号10 桁の名前空間を識別するURL。",
+        "min": 1,
+        "fixedUri": "http://jpfhir.jp/fhir/ePrescription/InsuranceMedicalInstitutionNo",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.identifier.value",
+        "path": "Organization.identifier.value",
+        "short": "保険医療機関番号10 桁。",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "1311234567"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.type",
+        "path": "Organization.type",
+        "short": "施設種別",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.type.coding",
+        "path": "Organization.type.coding",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.type.coding.system",
+        "path": "Organization.type.coding.system",
+        "short": "施設種別を表すコード体系を識別するURI。",
+        "min": 1,
+        "fixedUri": "http://terminology.hl7.org/CodeSystem/organization-type",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.type.coding.code",
+        "path": "Organization.type.coding.code",
+        "short": "バリューセットOrganizationType(http://hl7.org/fhir/ValueSet/organization-type) から、医療機関を表すコードを指定。",
+        "min": 1,
+        "fixedCode": "prov",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.name",
+        "path": "Organization.name",
+        "short": "医療機関名称。",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "厚生労働省第一病院"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.telecom",
+        "path": "Organization.telecom",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "telcom.system"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.telecom:1",
+        "path": "Organization.telecom",
+        "sliceName": "1",
+        "short": "医療機関電話番号",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.telecom:1.system",
+        "path": "Organization.telecom.system",
+        "min": 1,
+        "fixedCode": "phone",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.telecom:1.value",
+        "path": "Organization.telecom.value",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "0123-456-7890"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.telecom:2",
+        "path": "Organization.telecom",
+        "sliceName": "2",
+        "short": "医療機関FAX番号",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.telecom:2.system",
+        "path": "Organization.telecom.system",
+        "min": 1,
+        "fixedCode": "fax",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.telecom:2.value",
+        "path": "Organization.telecom.value",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "0123-456-7891"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.telecom:3",
+        "path": "Organization.telecom",
+        "sliceName": "3",
+        "short": "その他の連絡先。",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.telecom:3.system",
+        "path": "Organization.telecom.system",
+        "min": 1,
+        "fixedCode": "other",
+        "mustSupport": true
+      },
+      {
+        "id": "Organization.telecom:3.value",
+        "path": "Organization.telecom.value",
+        "min": 1,
+        "example": [
+          {
+            "label": "Example for string",
+            "valueString": "090-9999-9999"
+          }
+        ],
+        "mustSupport": true
+      }
+    ]
+  }
+}
