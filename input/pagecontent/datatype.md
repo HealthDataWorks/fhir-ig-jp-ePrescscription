@@ -1,5 +1,7 @@
 [Previous Page - 医師の分割指示に係る処方箋](prescription.html)
 
+このページは、令和2年度厚生労働科学特別研究事業「診療情報提供書, 電子処方箋等の電子化医療文書の相互運用性確保のための標準規格の開発研究」において研究班が策定した<a href="https://std.jpfhir.jp/wp-content/uploads/2021/04/ePresctiption20210329Rel.zip">電子処方箋 HL7® FHIR®記述仕様書案</a>をもとに引用・再構成して作成しています。  
+
 ### 基本データタイプ（Primitive Types）
 HL7FHIR で使用される基本データタイプ（Primitive Types） について、本仕様書で出現しなかったものも含めて説明する。本記述は、[http://hl7.org/fhir/datatypes.html](http://hl7.org/fhir/datatypes.html) のPrimitive Types の記述を参考にして意訳している。
 

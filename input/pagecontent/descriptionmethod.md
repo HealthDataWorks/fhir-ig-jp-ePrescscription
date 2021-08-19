@@ -1,5 +1,7 @@
 [Previous Page - 電子処方箋FHIR記述の全体構造](structure.html)
 
+このページは、令和2年度厚生労働科学特別研究事業「診療情報提供書, 電子処方箋等の電子化医療文書の相互運用性確保のための標準規格の開発研究」において研究班が策定した<a href="https://std.jpfhir.jp/wp-content/uploads/2021/04/ePresctiption20210329Rel.zip">電子処方箋 HL7® FHIR®記述仕様書案</a>をもとに引用・再構成して作成しています。  
+
 以下の事項について、仕様を記述する。
 
 1. 後発品変更可否
