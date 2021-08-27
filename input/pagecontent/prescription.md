@@ -1,6 +1,7 @@
 [Previous Page - 処方箋の運用に関係する情報の記述方法](descriptionmethod.html)
 
 このページは、令和2年度厚生労働科学特別研究事業「診療情報提供書, 電子処方箋等の電子化医療文書の相互運用性確保のための標準規格の開発研究」において研究班が策定した<a href="https://std.jpfhir.jp/wp-content/uploads/2021/04/ePresctiption20210329Rel.zip">電子処方箋 HL7® FHIR®記述仕様書案</a>をもとに引用・再構成して作成しています。  
+以下で ***本文書*** は、研究班が策定した<a href="https://std.jpfhir.jp/wp-content/uploads/2021/04/ePresctiption20210329Rel.zip">電子処方箋 HL7® FHIR®記述仕様書案</a>を示します。  
 
 分割指示に係わる処方箋は、分割の1回分に対応するBundle リソースを、全体のヘッダ（分割処方箋の別紙）に相当するBundle リソースで束ねる構造をとる。分割処方箋の別紙に相当するBundle リソースには、分割処方箋セクションと別紙セクションの2 つのセクションを含むComposition リソースが含まれる。そのComposition リソースからは、患者を表すPatient リソースや、分割処方箋の作成医であるPractitionerRole リソースが参照される。
 
